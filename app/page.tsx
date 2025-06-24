@@ -909,56 +909,22 @@ export default function GTLFIPage() {
                     Artigos e pesquisas resultantes do projeto
                   </p>
                 </div>
-                <div className="space-y-6">
-                  <Card className="hover:shadow-lg transition-shadow">
-                    <CardContent className="p-6">
-                      <div className="flex items-start space-x-4">
-                        <FileText className="h-6 w-6 text-blue-600 dark:text-blue-400 mt-1" />
-                        <div className="flex-1">
-                          <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
-                            Gamificação no Ensino de Cibersegurança: Uma Abordagem Inovadora
-                          </h4>
-                          <p className="text-gray-600 dark:text-gray-300 text-sm mb-2">Silva, J.; Santos, M. (2024)</p>
-                          <p className="text-gray-500 dark:text-gray-400 text-sm mb-3">
-                            Revista Brasileira de Educação Tecnológica, v.15, n.2, p.45-62
-                          </p>
-                          <div className="flex items-center space-x-4">
-                            <Badge className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">Gamificação</Badge>
-                            <Badge className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200">Educação</Badge>
-                            <Link href="#" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 text-sm flex items-center">
-                              <ExternalLink className="h-4 w-4 mr-1" />
-                              Ver artigo
-                            </Link>
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="hover:shadow-lg transition-shadow">
-                    <CardContent className="p-6">
-                      <div className="flex items-start space-x-4">
-                        <FileText className="h-6 w-6 text-blue-600 dark:text-blue-400 mt-1" />
-                        <div className="flex-1">
-                          <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
-                            Inteligência Artificial na Detecção de Incidentes de Segurança
-                          </h4>
-                          <p className="text-gray-600 dark:text-gray-300 text-sm mb-2">Santos, M.; Silva, J. (2024)</p>
-                          <p className="text-gray-500 dark:text-gray-400 text-sm mb-3">
-                            Anais do Simpósio Brasileiro de Segurança da Informação, p.123-138
-                          </p>
-                          <div className="flex items-center space-x-4">
-                            <Badge className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200">IA</Badge>
-                            <Badge className="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200">Segurança</Badge>
-                            <Link href="#" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 text-sm flex items-center">
-                              <ExternalLink className="h-4 w-4 mr-1" />
-                              Ver artigo
-                            </Link>
-                          </div>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                <div className="flex flex-col items-center justify-center py-12">
+                  <div className="w-24 h-24 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mb-6">
+                    <FileText className="h-12 w-12 text-gray-400 dark:text-gray-500" />
+                  </div>
+                  <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+                    Em Desenvolvimento
+                  </h4>
+                  <p className="text-gray-600 dark:text-gray-300 text-center max-w-md">
+                    Nosso projeto está atualmente em fase de desenvolvimento e pesquisa. 
+                    As publicações científicas serão disponibilizadas conforme os resultados forem obtidos.
+                  </p>
+                  <div className="mt-6">
+                    <Badge className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">
+                      Pesquisa em Andamento
+                    </Badge>
+                  </div>
                 </div>
               </div>
             )}
@@ -1003,12 +969,9 @@ export default function GTLFIPage() {
               <div className="space-y-2 text-sm text-gray-400">
                 <div className="flex items-center space-x-2">
                   <Mail className="h-4 w-4" />
-                  <span>contato@gt-lfi.org</span>
+                  <span>gt.lif.rnp@gmail.com</span>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <MapPin className="h-4 w-4" />
-                  <span>São Paulo, Brasil</span>
-                </div>
+
               </div>
             </div>
           </div>
