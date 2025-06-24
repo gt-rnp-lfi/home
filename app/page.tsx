@@ -108,10 +108,12 @@ export default function GTLFIPage() {
   const { isDark, toggleDarkMode } = useDarkMode()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [showScrollTop, setShowScrollTop] = useState(false)
-  const [activeTab, setActiveTab] = useState("produtos")
+  const [activeTab, setActiveTab] = useState("sobre")
 
   // Definir as abas do carrossel
   const carouselTabs = [
+    { id: "sobre", label: "Fundamentação", icon: AlertTriangle },
+    { id: "proposta", label: "Nossa Proposta", icon: Target },
     { id: "produtos", label: "Produtos Gerados", icon: Settings },
     { id: "aprendizado", label: "Aprendizado", icon: BookOpen },
     { id: "equipe", label: "Equipe", icon: Users },
@@ -132,8 +134,6 @@ export default function GTLFIPage() {
 
   const navigationItems = [
     { id: "inicio", label: "Início", href: "#inicio" },
-    { id: "sobre", label: "Sobre Incidentes", href: "#sobre" },
-    { id: "proposta", label: "Nossa Proposta", href: "#proposta" },
     { id: "explorar", label: "Explorar Projeto", href: "#explorar" },
   ]
 
@@ -185,203 +185,25 @@ export default function GTLFIPage() {
             Uma plataforma gamificada que utiliza IA para transformar o aprendizado de resposta a incidentes de
             segurança em uma experiência envolvente e prática.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-blue-600 hover:bg-blue-700" onClick={() => scrollTo("proposta")}>
-              Explore nossa proposta
-            </Button>
-            <Button size="lg" variant="outline" onClick={() => scrollTo("sobre")}>
-              Saiba Mais
+          <div className="flex justify-center">
+            <Button size="lg" className="bg-blue-600 hover:bg-blue-700" onClick={() => scrollTo("explorar")}>
+              Explore nosso projeto
             </Button>
           </div>
         </div>
       </section>
 
-      {/* O que é um Incidente */}
-      <section id="sobre" className="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-800 transition-colors duration-300">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">O que é um Incidente?</h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Um incidente de segurança ocorre quando há uma ameaça ou violação que compromete a confidencialidade,
-              integridade ou disponibilidade de dados.
-            </p>
-          </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            <Card className="border-red-200 dark:border-red-800 hover:shadow-lg transition-shadow">
-              <CardHeader className="text-center">
-                <AlertTriangle className="h-12 w-12 text-red-500 dark:text-red-400 mx-auto mb-2" />
-                <CardTitle className="text-red-700 dark:text-red-400">Malware</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 dark:text-gray-300 text-center">
-                  Softwares maliciosos que comprometem sistemas
-                </p>
-              </CardContent>
-            </Card>
 
-            <Card className="border-orange-200 dark:border-orange-800 hover:shadow-lg transition-shadow">
-              <CardHeader className="text-center">
-                <Zap className="h-12 w-12 text-orange-500 dark:text-orange-400 mx-auto mb-2" />
-                <CardTitle className="text-orange-700 dark:text-orange-400">DDoS</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 dark:text-gray-300 text-center">
-                  Ataques que sobrecarregam serviços
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-purple-200 dark:border-purple-800 hover:shadow-lg transition-shadow">
-              <CardHeader className="text-center">
-                <Database className="h-12 w-12 text-purple-500 dark:text-purple-400 mx-auto mb-2" />
-                <CardTitle className="text-purple-700 dark:text-purple-400">Vazamento de Dados</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 dark:text-gray-300 text-center">
-                  Exposição não autorizada de informações
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="border-blue-200 dark:border-blue-800 hover:shadow-lg transition-shadow">
-              <CardHeader className="text-center">
-                <Lock className="h-12 w-12 text-blue-500 dark:text-blue-400 mx-auto mb-2" />
-                <CardTitle className="text-blue-700 dark:text-blue-400">Acesso Indevido</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 dark:text-gray-300 text-center">
-                  Invasões e tentativas de comprometimento
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Processo de Resposta */}
-          <div className="text-center mb-12">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">O que é Resposta a Incidentes?</h3>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-4xl mx-auto mb-8">
-              A resposta a incidentes é o conjunto de ações tomadas para identificar, conter, mitigar e prevenir ameaças
-              à segurança cibernética.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="text-center">
-              <div className="bg-blue-100 dark:bg-blue-900 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                <Target className="h-8 w-8 text-blue-600 dark:text-blue-400" />
-              </div>
-              <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Identificação</h4>
-              <p className="text-gray-600 dark:text-gray-300 text-sm">
-                Reconhecer rapidamente ameaças
+              {/* Carrossel/Modal de Exploração */}
+        <section id="explorar" className="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-800 transition-colors duration-300">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Explore Nosso Projeto</h2>
+              <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                Navegue pelas abas para conhecer a fundamentação teórica, nossa proposta inovadora, produtos desenvolvidos, equipe e muito mais
               </p>
             </div>
-
-            <div className="text-center">
-              <div className="bg-green-100 dark:bg-green-900 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                <Shield className="h-8 w-8 text-green-600 dark:text-green-400" />
-              </div>
-              <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Contenção</h4>
-              <p className="text-gray-600 dark:text-gray-300 text-sm">
-                Impedir o avanço do incidente
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="bg-orange-100 dark:bg-orange-900 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                <Settings className="h-8 w-8 text-orange-600 dark:text-orange-400" />
-              </div>
-              <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Mitigação</h4>
-              <p className="text-gray-600 dark:text-gray-300 text-sm">
-                Reduzir impactos e danos
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="bg-purple-100 dark:bg-purple-900 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                <TrendingUp className="h-8 w-8 text-purple-600 dark:text-purple-400" />
-              </div>
-              <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Prevenção</h4>
-              <p className="text-gray-600 dark:text-gray-300 text-sm">
-                Evitar incidentes futuros
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Nossa Proposta */}
-      <section id="proposta" className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-800 dark:to-purple-800">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">Nossa Proposta</h2>
-          <p className="text-xl text-blue-100 dark:text-blue-200 mb-12 max-w-4xl mx-auto">
-            Uma plataforma inovadora que combina gamificação, inteligência artificial e aprendizado colaborativo.
-          </p>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            <Card className="bg-white/10 backdrop-blur-md border-white/20 text-white hover:bg-white/20 transition-all">
-              <CardHeader className="text-center">
-                <Brain className="h-12 w-12 text-blue-200 mx-auto mb-2" />
-                <CardTitle className="text-white">Módulo de Inteligência</CardTitle>
-                <CardDescription className="text-blue-100">
-                  Sistema de IA para análise automática
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-blue-100">
-                  <li>• Análise preditiva</li>
-                  <li>• Respostas automatizadas</li>
-                  <li>• Aprendizado contínuo</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white/10 backdrop-blur-md border-white/20 text-white hover:bg-white/20 transition-all">
-              <CardHeader className="text-center">
-                <FileText className="h-12 w-12 text-blue-200 mx-auto mb-2" />
-                <CardTitle className="text-white">Módulo PoP</CardTitle>
-                <CardDescription className="text-blue-100">
-                  Procedimentos operacionais padrão
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-blue-100">
-                  <li>• Workflows personalizados</li>
-                  <li>• Documentação integrada</li>
-                  <li>• Métricas de eficiência</li>
-                </ul>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white/10 backdrop-blur-md border-white/20 text-white hover:bg-white/20 transition-all">
-              <CardHeader className="text-center">
-                <UserCheck className="h-12 w-12 text-blue-200 mx-auto mb-2" />
-                <CardTitle className="text-white">Módulo Hackers do Bem</CardTitle>
-                <CardDescription className="text-blue-100">
-                  Treinamento e certificação
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-2 text-blue-100">
-                  <li>• Simulações realistas</li>
-                  <li>• Certificações</li>
-                  <li>• Mentoria especializada</li>
-                </ul>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Carrossel/Modal de Exploração */}
-      <section id="explorar" className="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-800 transition-colors duration-300">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Explore Nosso Projeto</h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Navegue pelas diferentes áreas do projeto GT-LFI e descubra nossas soluções, equipe e resultados
-            </p>
-          </div>
 
           {/* Navegação de Abas */}
           <div className="mb-8">
@@ -408,6 +230,239 @@ export default function GTLFIPage() {
 
           {/* Conteúdo do Carrossel */}
           <div className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-8 min-h-[600px] transition-all duration-500">
+            {activeTab === "sobre" && (
+              <div>
+                <div className="text-center mb-12">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">O que é um Incidente?</h3>
+                  <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                    Um incidente de segurança ocorre quando há uma ameaça ou violação que compromete a confidencialidade,
+                    integridade ou disponibilidade de dados.
+                  </p>
+                </div>
+
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                  <Card className="border-red-200 dark:border-red-800 hover:shadow-lg transition-shadow">
+                    <CardHeader className="text-center">
+                      <AlertTriangle className="h-12 w-12 text-red-500 dark:text-red-400 mx-auto mb-2" />
+                      <CardTitle className="text-red-700 dark:text-red-400">Malware</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-gray-600 dark:text-gray-300 text-center">
+                        Softwares maliciosos que comprometem sistemas
+                      </p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="border-orange-200 dark:border-orange-800 hover:shadow-lg transition-shadow">
+                    <CardHeader className="text-center">
+                      <Zap className="h-12 w-12 text-orange-500 dark:text-orange-400 mx-auto mb-2" />
+                      <CardTitle className="text-orange-700 dark:text-orange-400">DDoS</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-gray-600 dark:text-gray-300 text-center">
+                        Ataques que sobrecarregam serviços
+                      </p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="border-purple-200 dark:border-purple-800 hover:shadow-lg transition-shadow">
+                    <CardHeader className="text-center">
+                      <Database className="h-12 w-12 text-purple-500 dark:text-purple-400 mx-auto mb-2" />
+                      <CardTitle className="text-purple-700 dark:text-purple-400">Vazamento de Dados</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-gray-600 dark:text-gray-300 text-center">
+                        Exposição não autorizada de informações
+                      </p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="border-blue-200 dark:border-blue-800 hover:shadow-lg transition-shadow">
+                    <CardHeader className="text-center">
+                      <Lock className="h-12 w-12 text-blue-500 dark:text-blue-400 mx-auto mb-2" />
+                      <CardTitle className="text-blue-700 dark:text-blue-400">Acesso Indevido</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-gray-600 dark:text-gray-300 text-center">
+                        Invasões e tentativas de comprometimento
+                      </p>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Processo de Resposta */}
+                <div className="text-center mb-12">
+                  <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-4">O que é Resposta a Incidentes?</h4>
+                  <p className="text-lg text-gray-600 dark:text-gray-300 max-w-4xl mx-auto mb-8">
+                    A resposta a incidentes é o conjunto de ações tomadas para identificar, conter, mitigar e prevenir ameaças
+                    à segurança cibernética.
+                  </p>
+                </div>
+
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <div className="text-center">
+                    <div className="bg-blue-100 dark:bg-blue-900 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                      <Target className="h-8 w-8 text-blue-600 dark:text-blue-400" />
+                    </div>
+                    <h5 className="font-semibold text-gray-900 dark:text-white mb-2">Identificação</h5>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">
+                      Reconhecer rapidamente ameaças
+                    </p>
+                  </div>
+
+                  <div className="text-center">
+                    <div className="bg-green-100 dark:bg-green-900 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                      <Shield className="h-8 w-8 text-green-600 dark:text-green-400" />
+                    </div>
+                    <h5 className="font-semibold text-gray-900 dark:text-white mb-2">Contenção</h5>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">
+                      Impedir o avanço do incidente
+                    </p>
+                  </div>
+
+                  <div className="text-center">
+                    <div className="bg-orange-100 dark:bg-orange-900 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                      <Settings className="h-8 w-8 text-orange-600 dark:text-orange-400" />
+                    </div>
+                    <h5 className="font-semibold text-gray-900 dark:text-white mb-2">Mitigação</h5>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">
+                      Reduzir impactos e danos
+                    </p>
+                  </div>
+
+                  <div className="text-center">
+                    <div className="bg-purple-100 dark:bg-purple-900 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                      <TrendingUp className="h-8 w-8 text-purple-600 dark:text-purple-400" />
+                    </div>
+                    <h5 className="font-semibold text-gray-900 dark:text-white mb-2">Prevenção</h5>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">
+                      Evitar incidentes futuros
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {activeTab === "proposta" && (
+              <div>
+                <div className="text-center mb-12">
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Nossa Proposta</h3>
+                  <p className="text-lg text-gray-600 dark:text-gray-300 max-w-4xl mx-auto">
+                    Uma plataforma inovadora que combina gamificação, inteligência artificial e aprendizado colaborativo.
+                  </p>
+                </div>
+
+                <div className="grid md:grid-cols-3 gap-8 mb-12">
+                  <Card className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 border-blue-200 dark:border-blue-700 hover:shadow-xl transition-all">
+                    <CardHeader className="text-center">
+                      <div className="bg-blue-600 dark:bg-blue-500 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                        <Brain className="h-8 w-8 text-white" />
+                      </div>
+                      <CardTitle className="text-blue-800 dark:text-blue-200">Módulo de Inteligência</CardTitle>
+                      <CardDescription className="text-blue-600 dark:text-blue-300">
+                        Sistema de IA para análise automática
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <ul className="space-y-3 text-gray-700 dark:text-gray-300">
+                        <li className="flex items-center space-x-2">
+                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                          <span>Análise preditiva</span>
+                        </li>
+                        <li className="flex items-center space-x-2">
+                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                          <span>Respostas automatizadas</span>
+                        </li>
+                        <li className="flex items-center space-x-2">
+                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                          <span>Aprendizado contínuo</span>
+                        </li>
+                      </ul>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 border-purple-200 dark:border-purple-700 hover:shadow-xl transition-all">
+                    <CardHeader className="text-center">
+                      <div className="bg-purple-600 dark:bg-purple-500 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                        <FileText className="h-8 w-8 text-white" />
+                      </div>
+                      <CardTitle className="text-purple-800 dark:text-purple-200">Módulo PoP</CardTitle>
+                      <CardDescription className="text-purple-600 dark:text-purple-300">
+                        Procedimentos operacionais padrão
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <ul className="space-y-3 text-gray-700 dark:text-gray-300">
+                        <li className="flex items-center space-x-2">
+                          <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                          <span>Workflows personalizados</span>
+                        </li>
+                        <li className="flex items-center space-x-2">
+                          <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                          <span>Documentação integrada</span>
+                        </li>
+                        <li className="flex items-center space-x-2">
+                          <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                          <span>Métricas de eficiência</span>
+                        </li>
+                      </ul>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900 dark:to-green-800 border-green-200 dark:border-green-700 hover:shadow-xl transition-all">
+                    <CardHeader className="text-center">
+                      <div className="bg-green-600 dark:bg-green-500 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                        <UserCheck className="h-8 w-8 text-white" />
+                      </div>
+                      <CardTitle className="text-green-800 dark:text-green-200">Módulo Hackers do Bem</CardTitle>
+                      <CardDescription className="text-green-600 dark:text-green-300">
+                        Treinamento e certificação
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <ul className="space-y-3 text-gray-700 dark:text-gray-300">
+                        <li className="flex items-center space-x-2">
+                          <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                          <span>Simulações realistas</span>
+                        </li>
+                        <li className="flex items-center space-x-2">
+                          <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                          <span>Certificações</span>
+                        </li>
+                        <li className="flex items-center space-x-2">
+                          <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                          <span>Mentoria especializada</span>
+                        </li>
+                      </ul>
+                    </CardContent>
+                  </Card>
+                </div>
+
+                {/* Benefícios */}
+                <div className="text-center mb-8">
+                  <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Benefícios da Plataforma</h4>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">Gamificação</div>
+                      <div className="text-gray-600 dark:text-gray-300 text-sm">Aprendizado envolvente</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">IA</div>
+                      <div className="text-gray-600 dark:text-gray-300 text-sm">Análise inteligente</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">Colaboração</div>
+                      <div className="text-gray-600 dark:text-gray-300 text-sm">Aprendizado social</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-orange-600 dark:text-orange-400 mb-2">Prático</div>
+                      <div className="text-gray-600 dark:text-gray-300 text-sm">Casos reais</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {activeTab === "produtos" && (
               <div>
                 <div className="text-center mb-8">
@@ -935,49 +990,31 @@ export default function GTLFIPage() {
       {/* Footer */}
       <footer className="bg-gray-900 dark:bg-black text-white py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 gap-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
                 <Shield className="h-8 w-8 text-blue-400" />
                 <span className="text-xl font-bold">GT-LFI</span>
               </div>
               <p className="text-gray-400 text-sm">
-                Transformando o aprendizado de cibersegurança através da inovação.
+                Transformando o aprendizado de cibersegurança através da inovação. 
+                Projeto de pesquisa desenvolvido em parceria com a RNP e Hackers do Bem.
               </p>
             </div>
 
-            <div>
-              <h3 className="font-semibold mb-4">Links Rápidos</h3>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><button onClick={() => scrollTo("sobre")} className="hover:text-white">Sobre</button></li>
-                <li><button onClick={() => scrollTo("proposta")} className="hover:text-white">Proposta</button></li>
-                <li><button onClick={() => scrollTo("explorar")} className="hover:text-white">Explorar</button></li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-semibold mb-4">Recursos</h3>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><Link href="#" className="hover:text-white">Documentação</Link></li>
-                <li><Link href="#" className="hover:text-white">Tutoriais</Link></li>
-                <li><Link href="#" className="hover:text-white">API</Link></li>
-              </ul>
-            </div>
-
-            <div>
+            <div className="text-right">
               <h3 className="font-semibold mb-4">Contato</h3>
               <div className="space-y-2 text-sm text-gray-400">
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center justify-end space-x-2">
                   <Mail className="h-4 w-4" />
                   <span>gt.lif.rnp@gmail.com</span>
                 </div>
-
               </div>
             </div>
           </div>
 
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
-            <p>&copy; {new Date().getFullYear()} GT-LFI. Todos os direitos reservados.</p>
+            <p>&copy; {new Date().getFullYear()} GT-LFI - Learning From Incidents. Todos os direitos reservados.</p>
           </div>
         </div>
       </footer>
