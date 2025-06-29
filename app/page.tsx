@@ -30,6 +30,10 @@ import {
   X,
   Moon,
   Sun,
+  ArrowRight,
+  CheckCircle,
+  Star,
+  Sparkles,
 } from "lucide-react"
 import Link from "next/link"
 
@@ -107,121 +111,608 @@ export default function GTLFIPage() {
   const scrollTo = useScrollTo()
   const { isDark, toggleDarkMode } = useDarkMode()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [showScrollTop, setShowScrollTop] = useState(false)
   const [activeTab, setActiveTab] = useState("sobre")
 
-  // Definir as abas do carrossel
+  // Definir as abas do carrossel (removendo equipe e produtos)
   const carouselTabs = [
     { id: "sobre", label: "Fundamentação", icon: AlertTriangle },
-    { id: "proposta", label: "Nossa Proposta", icon: Target },
-    { id: "produtos", label: "Produtos Gerados", icon: Settings },
-    { id: "aprendizado", label: "Aprendizado", icon: BookOpen },
-    { id: "equipe", label: "Equipe", icon: Users },
     { id: "ferramentas", label: "Ferramentas", icon: Zap },
     { id: "financiadores", label: "Financiadores", icon: Award },
     { id: "publicacoes", label: "Publicações", icon: FileText },
   ]
 
-  // Detectar scroll para mostrar botão "voltar ao topo"
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 400)
-    }
 
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
 
   const navigationItems = [
     { id: "inicio", label: "Início", href: "#inicio" },
-    { id: "explorar", label: "Explorar Projeto", href: "#explorar" },
+    { id: "proposta-aprendizado", label: "Nossa Proposta", href: "#proposta-aprendizado" },
+    { id: "produtos", label: "Produtos", href: "#produtos" },
+    { id: "explorar", label: "Explorar", href: "#explorar" },
+    { id: "equipe", label: "Equipe", href: "#equipe" },
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-900 dark:to-slate-900 transition-colors duration-300">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-slate-900 dark:to-blue-900 transition-all duration-500">
       {/* Navbar */}
-      <nav className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 sticky top-0 z-40 transition-colors duration-300">
+      <nav className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg border-b border-gray-200/50 dark:border-gray-700/50 sticky top-0 z-50 transition-all duration-300 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-2">
-              <Shield className="h-8 w-8 text-blue-600 dark:text-blue-400" />
-              <span className="text-xl font-bold text-gray-900 dark:text-white">GT-LFI</span>
+            <div className="flex items-center space-x-2 group">
+              <div className="relative">
+                <Shield className="h-8 w-8 text-blue-600 dark:text-blue-400 transition-transform duration-300 group-hover:scale-110" />
+                <div className="absolute -inset-1 bg-blue-600/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
+              </div>
+              <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">GT-LFI</span>
             </div>
 
-            <div className="hidden lg:flex items-center space-x-1">
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-1">
               {navigationItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollTo(item.id)}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  className={`px-3 lg:px-4 py-2 rounded-lg text-xs lg:text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
                     activeSection === item.id
-                      ? "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300"
-                      : "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-50 dark:hover:bg-gray-800"
+                      ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-lg shadow-blue-500/25"
+                      : "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30"
                   }`}
                 >
-                  {item.label}
+                  <span className="hidden lg:inline">{item.label}</span>
+                  <span className="lg:hidden">{item.label.split(' ')[0]}</span>
                 </button>
               ))}
-              <Button variant="outline" className="ml-4">Contato</Button>
-              <button onClick={toggleDarkMode} className="ml-2 p-2 rounded-md">
+              <Button 
+                variant="outline" 
+                size="sm"
+                className="ml-2 lg:ml-4 border-blue-200 hover:border-blue-300 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-all duration-300 transform hover:scale-105 text-xs lg:text-sm"
+              >
+                <span className="hidden lg:inline">Contato</span>
+                <Mail className="h-4 w-4 lg:hidden" />
+              </Button>
+              <button 
+                onClick={toggleDarkMode} 
+                className="ml-1 lg:ml-2 p-2 rounded-lg transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800 transform hover:scale-110"
+                aria-label="Toggle dark mode"
+              >
+                {isDark ? <Sun className="h-4 w-4 lg:h-5 lg:w-5" /> : <Moon className="h-4 w-4 lg:h-5 lg:w-5" />}
+              </button>
+            </div>
+
+            {/* Mobile menu button */}
+            <div className="md:hidden flex items-center space-x-2">
+              <button 
+                onClick={toggleDarkMode} 
+                className="p-2 rounded-lg transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                aria-label="Toggle dark mode"
+              >
                 {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              </button>
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="p-2 rounded-lg transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                aria-label="Toggle mobile menu"
+              >
+                {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
               </button>
             </div>
           </div>
+
+          {/* Mobile menu */}
+          {mobileMenuOpen && (
+            <div className="md:hidden py-4 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg animate-in slide-in-from-top duration-300 border-t border-gray-200/50 dark:border-gray-700/50">
+              <div className="flex flex-col space-y-3">
+                {navigationItems.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => {
+                      scrollTo(item.id)
+                      setMobileMenuOpen(false)
+                    }}
+                    className={`px-4 py-3 text-left rounded-lg text-sm font-medium transition-all duration-300 ${
+                      activeSection === item.id
+                        ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-lg"
+                        : "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30"
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+                <div className="pt-3 border-t border-gray-200 dark:border-gray-700">
+                  <Button 
+                    variant="outline" 
+                    className="w-full justify-center border-blue-200 hover:border-blue-300 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-all duration-300"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <Mail className="h-4 w-4 mr-2" />
+                    Contato
+                  </Button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section id="inicio" className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto text-center">
-          <Badge className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 mb-8">
-            Inovação em Cibersegurança
-          </Badge>
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-            GT-LFI
-            <span className="block text-blue-600 dark:text-blue-400">Learning From Incidents</span>
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
-            Uma plataforma gamificada que utiliza IA para transformar o aprendizado de resposta a incidentes de
-            segurança em uma experiência envolvente e prática.
-          </p>
-          <div className="flex justify-center">
-            <Button size="lg" className="bg-blue-600 hover:bg-blue-700" onClick={() => scrollTo("explorar")}>
-              Explore nosso projeto
-            </Button>
+      {/* Hero Section - Mais alta e impactante */}
+      <section id="inicio" className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
+        {/* Background Effects */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-400/20 to-indigo-400/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-cyan-400/10 to-blue-400/10 rounded-full blur-3xl animate-spin-slow"></div>
+        </div>
+
+        <div className="relative max-w-7xl mx-auto text-center z-10">
+          <div className="animate-in fade-in slide-in-from-bottom duration-1000">
+            <Badge className="bg-gradient-to-r from-blue-500 to-indigo-500 text-white mb-8 px-6 py-2 text-sm font-medium shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/30 transition-all duration-300 transform hover:scale-105">
+              <Sparkles className="w-4 h-4 mr-2" />
+              Inovação em Cibersegurança
+            </Badge>
+          </div>
+          
+          <div className="animate-in fade-in slide-in-from-bottom duration-1000 delay-200">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-8">
+              <span className="bg-gradient-to-r from-gray-900 via-blue-800 to-gray-900 dark:from-white dark:via-blue-200 dark:to-white bg-clip-text text-transparent">
+                GT-LFI
+              </span>
+              <br />
+              <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 dark:from-blue-400 dark:via-indigo-400 dark:to-purple-400 bg-clip-text text-transparent animate-gradient">
+                Learning From Incidents
+              </span>
+            </h1>
+          </div>
+
+          <div className="animate-in fade-in slide-in-from-bottom duration-1000 delay-400">
+            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
+              Uma plataforma <span className="font-semibold text-blue-600 dark:text-blue-400">gamificada</span> que utiliza 
+              <span className="font-semibold text-indigo-600 dark:text-indigo-400"> inteligência artificial</span> para transformar 
+              o aprendizado de resposta a incidentes de segurança em uma experiência 
+              <span className="font-semibold text-purple-600 dark:text-purple-400"> envolvente e prática</span>.
+            </p>
+          </div>
+
+          <div className="animate-in fade-in slide-in-from-bottom duration-1000 delay-600">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-8 py-4 text-lg font-medium shadow-xl shadow-blue-500/25 hover:shadow-2xl hover:shadow-blue-500/30 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1"
+                onClick={() => scrollTo("proposta-aprendizado")}
+              >
+                Explore nosso projeto
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="border-2 border-blue-200 dark:border-blue-700 text-blue-600 dark:text-blue-400 px-8 py-4 text-lg font-medium hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-all duration-300 transform hover:scale-105"
+                onClick={() => scrollTo("produtos")}
+              >
+                Ver Produtos
+              </Button>
+            </div>
+          </div>
+
+
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-10 border-2 border-blue-400 dark:border-blue-300 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-blue-400 dark:bg-blue-300 rounded-full mt-2 animate-pulse"></div>
           </div>
         </div>
       </section>
 
-
-
-              {/* Carrossel/Modal de Exploração */}
-        <section id="explorar" className="py-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-800 transition-colors duration-300">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Explore Nosso Projeto</h2>
-              <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                Navegue pelas abas para conhecer a fundamentação teórica, nossa proposta inovadora, produtos desenvolvidos, equipe e muito mais
+      {/* Seção Proposta e Aprendizado Mescladas */}
+      <section id="proposta-aprendizado" className="py-24 px-4 sm:px-6 lg:px-8 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="animate-in fade-in slide-in-from-bottom duration-1000">
+              <Badge className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white mb-6 px-4 py-2">
+                Nossa Abordagem Inovadora
+              </Badge>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                <span className="bg-gradient-to-r from-gray-900 to-blue-800 dark:from-white dark:to-blue-200 bg-clip-text text-transparent">
+                  Proposta & Aprendizado
+                </span>
+              </h2>
+              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                Combinamos <span className="font-semibold text-indigo-600 dark:text-indigo-400">gamificação</span>, 
+                <span className="font-semibold text-purple-600 dark:text-purple-400"> inteligência artificial</span> e 
+                <span className="font-semibold text-blue-600 dark:text-blue-400"> aprendizado colaborativo</span> 
+                para revolucionar o ensino de cibersegurança.
               </p>
             </div>
+          </div>
+
+          {/* Módulos da Proposta */}
+          <div className="grid md:grid-cols-3 gap-8 mb-16">
+            <div className="animate-in fade-in slide-in-from-left duration-1000">
+              <Card className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/50 dark:to-blue-800/50 border-blue-200 dark:border-blue-700 hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 group">
+                <CardHeader className="text-center">
+                  <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110">
+                    <Brain className="h-10 w-10 text-white" />
+                  </div>
+                  <CardTitle className="text-blue-800 dark:text-blue-200 text-xl">Módulo de Inteligência</CardTitle>
+                  <CardDescription className="text-blue-600 dark:text-blue-300">
+                    Sistema de IA para análise automática
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-3 text-gray-700 dark:text-gray-300">
+                    <li className="flex items-center space-x-3">
+                      <CheckCircle className="w-5 h-5 text-blue-500" />
+                      <span>Análise preditiva avançada</span>
+                    </li>
+                    <li className="flex items-center space-x-3">
+                      <CheckCircle className="w-5 h-5 text-blue-500" />
+                      <span>Respostas automatizadas inteligentes</span>
+                    </li>
+                    <li className="flex items-center space-x-3">
+                      <CheckCircle className="w-5 h-5 text-blue-500" />
+                      <span>Aprendizado contínuo adaptativo</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="animate-in fade-in slide-in-from-bottom duration-1000 delay-200">
+              <Card className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/50 dark:to-purple-800/50 border-purple-200 dark:border-purple-700 hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 group">
+                <CardHeader className="text-center">
+                  <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110">
+                    <FileText className="h-10 w-10 text-white" />
+                  </div>
+                  <CardTitle className="text-purple-800 dark:text-purple-200 text-xl">Módulo PoP</CardTitle>
+                  <CardDescription className="text-purple-600 dark:text-purple-300">
+                    Procedimentos operacionais padrão
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-3 text-gray-700 dark:text-gray-300">
+                    <li className="flex items-center space-x-3">
+                      <CheckCircle className="w-5 h-5 text-purple-500" />
+                      <span>Workflows personalizados</span>
+                    </li>
+                    <li className="flex items-center space-x-3">
+                      <CheckCircle className="w-5 h-5 text-purple-500" />
+                      <span>Documentação integrada</span>
+                    </li>
+                    <li className="flex items-center space-x-3">
+                      <CheckCircle className="w-5 h-5 text-purple-500" />
+                      <span>Métricas de eficiência</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="animate-in fade-in slide-in-from-right duration-1000 delay-400">
+              <Card className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/50 dark:to-green-800/50 border-green-200 dark:border-green-700 hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 group">
+                <CardHeader className="text-center">
+                  <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110">
+                    <UserCheck className="h-10 w-10 text-white" />
+                  </div>
+                  <CardTitle className="text-green-800 dark:text-green-200 text-xl">Módulo Hackers do Bem</CardTitle>
+                  <CardDescription className="text-green-600 dark:text-green-300">
+                    Treinamento e certificação
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-3 text-gray-700 dark:text-gray-300">
+                    <li className="flex items-center space-x-3">
+                      <CheckCircle className="w-5 h-5 text-green-500" />
+                      <span>Simulações realistas</span>
+                    </li>
+                    <li className="flex items-center space-x-3">
+                      <CheckCircle className="w-5 h-5 text-green-500" />
+                      <span>Certificações reconhecidas</span>
+                    </li>
+                    <li className="flex items-center space-x-3">
+                      <CheckCircle className="w-5 h-5 text-green-500" />
+                      <span>Mentoria especializada</span>
+                    </li>
+                  </ul>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+          {/* Seção de Aprendizado Inovador */}
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+            <div className="animate-in fade-in slide-in-from-left duration-1000">
+              <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+                <span className="bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
+                  Aprendizado Gamificado
+                </span>
+              </h3>
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+                Nossa plataforma transforma o aprendizado complexo de cibersegurança em uma experiência 
+                <span className="font-semibold text-indigo-600 dark:text-indigo-400"> envolvente e interativa</span>, 
+                utilizando elementos de gamificação para manter os usuários motivados e engajados.
+              </p>
+              
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4 group">
+                  <div className="bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg p-2 group-hover:scale-110 transition-transform duration-300">
+                    <Gamepad2 className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Gamificação Envolvente</h4>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">Pontuações, conquistas e rankings para motivar o progresso</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-4 group">
+                  <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg p-2 group-hover:scale-110 transition-transform duration-300">
+                    <Brain className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Aprendizado Adaptativo</h4>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">Conteúdo personalizado baseado no nível de conhecimento</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-start space-x-4 group">
+                  <div className="bg-gradient-to-r from-green-500 to-teal-500 rounded-lg p-2 group-hover:scale-110 transition-transform duration-300">
+                    <BookOpen className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Casos Reais</h4>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">Simulações baseadas em incidentes reais da indústria</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div className="animate-in fade-in slide-in-from-right duration-1000 delay-200">
+              <div className="grid grid-cols-2 gap-6">
+                <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30">
+                  <CardContent className="p-6">
+                    <div className="bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full p-3 w-16 h-16 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <Award className="h-10 w-10 text-white" />
+                    </div>
+                    <p className="font-semibold text-gray-900 dark:text-white">Certificações</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Reconhecimento oficial</p>
+                  </CardContent>
+                </Card>
+                
+                <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/30">
+                  <CardContent className="p-6">
+                    <div className="bg-gradient-to-r from-green-500 to-emerald-500 rounded-full p-3 w-16 h-16 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <BarChart3 className="h-10 w-10 text-white" />
+                    </div>
+                    <p className="font-semibold text-gray-900 dark:text-white">Progresso</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Acompanhamento detalhado</p>
+                  </CardContent>
+                </Card>
+                
+                <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/30">
+                  <CardContent className="p-6">
+                    <div className="bg-gradient-to-r from-purple-500 to-violet-500 rounded-full p-3 w-16 h-16 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <Users className="h-10 w-10 text-white" />
+                    </div>
+                    <p className="font-semibold text-gray-900 dark:text-white">Comunidade</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Colaboração entre pares</p>
+                  </CardContent>
+                </Card>
+                
+                <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/30">
+                  <CardContent className="p-6">
+                    <div className="bg-gradient-to-r from-orange-500 to-red-500 rounded-full p-3 w-16 h-16 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <Target className="h-10 w-10 text-white" />
+                    </div>
+                    <p className="font-semibold text-gray-900 dark:text-white">Desafios</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Missões específicas</p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+
+          {/* Benefícios da Plataforma */}
+          <div className="text-center">
+            <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">Benefícios da Nossa Abordagem</h4>
+            <div className="grid md:grid-cols-4 gap-8">
+              <div className="text-center group">
+                <div className="bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full p-4 w-20 h-20 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <Star className="h-12 w-12 text-white" />
+                </div>
+                <h5 className="font-semibold text-blue-600 dark:text-blue-400 text-lg mb-2">Gamificação</h5>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">Aprendizado envolvente e motivador</p>
+              </div>
+              
+              <div className="text-center group">
+                <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-full p-4 w-20 h-20 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <Brain className="h-12 w-12 text-white" />
+                </div>
+                <h5 className="font-semibold text-purple-600 dark:text-purple-400 text-lg mb-2">IA Avançada</h5>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">Personalização inteligente</p>
+              </div>
+              
+              <div className="text-center group">
+                <div className="bg-gradient-to-r from-green-500 to-emerald-500 rounded-full p-4 w-20 h-20 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <Shield className="h-12 w-12 text-white" />
+                </div>
+                <h5 className="font-semibold text-green-600 dark:text-green-400 text-lg mb-2">Prática Real</h5>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">Simulações autênticas</p>
+              </div>
+              
+              <div className="text-center group">
+                <div className="bg-gradient-to-r from-orange-500 to-red-500 rounded-full p-4 w-20 h-20 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <TrendingUp className="h-12 w-12 text-white" />
+                </div>
+                <h5 className="font-semibold text-orange-600 dark:text-orange-400 text-lg mb-2">Resultados</h5>
+                <p className="text-gray-600 dark:text-gray-300 text-sm">Melhoria contínua comprovada</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Seção Nossas Soluções */}
+      <section id="produtos" className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="animate-in fade-in slide-in-from-bottom duration-1000">
+              <Badge className="bg-gradient-to-r from-green-500 to-teal-500 text-white mb-6 px-4 py-2">
+                Resultados Concretos
+              </Badge>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                <span className="bg-gradient-to-r from-gray-900 to-green-800 dark:from-white dark:to-green-200 bg-clip-text text-transparent">
+                  Nossas Soluções
+                </span>
+              </h2>
+              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                Conheça as <span className="font-semibold text-green-600 dark:text-green-400">ferramentas inovadoras</span> desenvolvidas 
+                pelo nosso projeto de pesquisa, criadas para revolucionar a gestão de incidentes de segurança.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto mb-16">
+            {/* Anon-LFI */}
+            <div className="animate-in fade-in slide-in-from-left duration-1000">
+              <Card className="group hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-4 border-2 hover:border-blue-300 dark:hover:border-blue-600 bg-gradient-to-br from-blue-50/50 to-white dark:from-blue-900/20 dark:to-gray-800">
+                <CardHeader className="text-center pb-6">
+                  <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-3xl p-6 w-24 h-24 mx-auto mb-6 flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-6">
+                    <Shield className="h-12 w-12 text-white" />
+                  </div>
+                  <CardTitle className="text-2xl text-gray-900 dark:text-white mb-2">Anon-LFI</CardTitle>
+                  <CardDescription className="text-lg text-gray-600 dark:text-gray-300">
+                    Ferramenta de Anonimização de Tickets
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                    Desenvolvida para anonimizar tickets de incidentes, removendo todos os dados sensíveis 
+                    de forma <span className="font-semibold text-blue-600 dark:text-blue-400">segura e eficiente</span>, 
+                    preservando a utilidade dos dados para análise e aprendizado.
+                  </p>
+                  <ul className="space-y-4 mb-8">
+                    <li className="flex items-center space-x-3">
+                      <div className="bg-blue-100 dark:bg-blue-900 rounded-full p-1">
+                        <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                      </div>
+                      <span className="text-gray-700 dark:text-gray-300">Anonimização automática inteligente</span>
+                    </li>
+                    <li className="flex items-center space-x-3">
+                      <div className="bg-blue-100 dark:bg-blue-900 rounded-full p-1">
+                        <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                      </div>
+                      <span className="text-gray-700 dark:text-gray-300">Preservação de dados úteis para análise</span>
+                    </li>
+                    <li className="flex items-center space-x-3">
+                      <div className="bg-blue-100 dark:bg-blue-900 rounded-full p-1">
+                        <CheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                      </div>
+                      <span className="text-gray-700 dark:text-gray-300">Conformidade total com LGPD</span>
+                    </li>
+                  </ul>
+                  <Button 
+                    variant="outline" 
+                    className="w-full border-2 border-blue-300 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-all duration-300" 
+                    disabled
+                  >
+                    <Lock className="h-4 w-4 mr-2" />
+                    Ferramenta em Desenvolvimento
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Sentinel-LFI */}
+            <div className="animate-in fade-in slide-in-from-right duration-1000 delay-200">
+              <Card className="group hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-4 border-2 hover:border-purple-300 dark:hover:border-purple-600 bg-gradient-to-br from-purple-50/50 to-white dark:from-purple-900/20 dark:to-gray-800">
+                <CardHeader className="text-center pb-6">
+                  <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-3xl p-6 w-24 h-24 mx-auto mb-6 flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-6">
+                    <Brain className="h-12 w-12 text-white" />
+                  </div>
+                  <CardTitle className="text-2xl text-gray-900 dark:text-white mb-2">Sentinel-LFI</CardTitle>
+                  <CardDescription className="text-lg text-gray-600 dark:text-gray-300">
+                    Ferramenta de IA para Gestão de Incidentes
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+                    Sistema inteligente desenvolvido para categorizar incidentes utilizando padrões 
+                    <span className="font-semibold text-purple-600 dark:text-purple-400"> NIST e CERT</span>, 
+                    além de gerar playbooks automatizados e gerenciar tickets com eficiência máxima.
+                  </p>
+                  <ul className="space-y-4 mb-8">
+                    <li className="flex items-center space-x-3">
+                      <div className="bg-purple-100 dark:bg-purple-900 rounded-full p-1">
+                        <CheckCircle className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                      </div>
+                      <span className="text-gray-700 dark:text-gray-300">Categorização automática NIST/CERT</span>
+                    </li>
+                    <li className="flex items-center space-x-3">
+                      <div className="bg-purple-100 dark:bg-purple-900 rounded-full p-1">
+                        <CheckCircle className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                      </div>
+                      <span className="text-gray-700 dark:text-gray-300">Geração inteligente de playbooks</span>
+                    </li>
+                    <li className="flex items-center space-x-3">
+                      <div className="bg-purple-100 dark:bg-purple-900 rounded-full p-1">
+                        <CheckCircle className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+                      </div>
+                      <span className="text-gray-700 dark:text-gray-300">Gestão avançada de tickets</span>
+                    </li>
+                  </ul>
+                  <Button 
+                    variant="outline" 
+                    className="w-full border-2 border-purple-300 text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900/30 transition-all duration-300" 
+                    disabled
+                  >
+                    <Lock className="h-4 w-4 mr-2" />
+                    Ferramenta em Desenvolvimento
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+
+
+        </div>
+      </section>
+
+      {/* Carrossel/Modal de Exploração */}
+      <section id="explorar" className="py-24 px-4 sm:px-6 lg:px-8 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="animate-in fade-in slide-in-from-bottom duration-1000">
+              <Badge className="bg-gradient-to-r from-teal-500 to-cyan-500 text-white mb-6 px-4 py-2">
+                Explore em Detalhes
+              </Badge>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                <span className="bg-gradient-to-r from-gray-900 to-teal-800 dark:from-white dark:to-teal-200 bg-clip-text text-transparent">
+                  Conheça Nosso Projeto
+                </span>
+              </h2>
+              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                Navegue pelas abas para conhecer a <span className="font-semibold text-teal-600 dark:text-teal-400">fundamentação teórica</span>, 
+                as <span className="font-semibold text-cyan-600 dark:text-cyan-400">tecnologias utilizadas</span> e muito mais sobre nossa pesquisa.
+              </p>
+            </div>
+          </div>
 
           {/* Navegação de Abas */}
           <div className="mb-8">
-            <div className="flex flex-wrap justify-center gap-2 p-2 bg-gray-100 dark:bg-gray-700 rounded-xl">
+            <div className="flex flex-wrap justify-center gap-3 p-3 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 rounded-2xl shadow-lg">
               {carouselTabs.map((tab) => {
                 const IconComponent = tab.icon
                 return (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`flex items-center space-x-2 px-4 py-3 rounded-lg font-medium transition-all duration-300 ${
+                    className={`flex items-center space-x-3 px-6 py-4 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 ${
                       activeTab === tab.id
-                        ? "bg-white dark:bg-gray-600 text-blue-600 dark:text-blue-400 shadow-md transform scale-105"
-                        : "text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-white/50 dark:hover:bg-gray-600/50"
+                        ? "bg-gradient-to-r from-white to-gray-50 dark:from-gray-600 dark:to-gray-500 text-teal-600 dark:text-teal-400 shadow-lg scale-105"
+                        : "text-gray-600 dark:text-gray-300 hover:text-teal-600 dark:hover:text-teal-400 hover:bg-white/50 dark:hover:bg-gray-600/50"
                     }`}
                   >
                     <IconComponent className="h-5 w-5" />
-                    <span className="hidden sm:inline">{tab.label}</span>
+                    <span className="hidden sm:inline text-sm">{tab.label}</span>
                   </button>
                 )
               })}
@@ -229,61 +720,67 @@ export default function GTLFIPage() {
           </div>
 
           {/* Conteúdo do Carrossel */}
-          <div className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-8 min-h-[600px] transition-all duration-500">
+          <div className="bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 rounded-3xl p-8 lg:p-12 min-h-[600px] transition-all duration-500 shadow-xl">
             {activeTab === "sobre" && (
-              <div>
+              <div className="animate-in fade-in duration-500">
                 <div className="text-center mb-12">
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">O que é um Incidente?</h3>
-                  <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                    Um incidente de segurança ocorre quando há uma ameaça ou violação que compromete a confidencialidade,
-                    integridade ou disponibilidade de dados.
+                  <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+                    <span className="bg-gradient-to-r from-red-600 to-orange-600 dark:from-red-400 dark:to-orange-400 bg-clip-text text-transparent">
+                      O que é um Incidente?
+                    </span>
+                  </h3>
+                  <p className="text-lg text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                    Um incidente de segurança ocorre quando há uma ameaça ou violação que compromete a 
+                    <span className="font-semibold text-red-600 dark:text-red-400"> confidencialidade</span>, 
+                    <span className="font-semibold text-orange-600 dark:text-orange-400"> integridade</span> ou 
+                    <span className="font-semibold text-yellow-600 dark:text-yellow-400"> disponibilidade</span> de dados.
                   </p>
                 </div>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-                  <Card className="border-red-200 dark:border-red-800 hover:shadow-lg transition-shadow">
+                  <Card className="border-red-200 dark:border-red-800 hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/30 dark:to-red-800/30">
                     <CardHeader className="text-center">
                       <AlertTriangle className="h-12 w-12 text-red-500 dark:text-red-400 mx-auto mb-2" />
                       <CardTitle className="text-red-700 dark:text-red-400">Malware</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-gray-600 dark:text-gray-300 text-center">
+                      <p className="text-gray-600 dark:text-gray-300 text-center text-sm">
                         Softwares maliciosos que comprometem sistemas
                       </p>
                     </CardContent>
                   </Card>
 
-                  <Card className="border-orange-200 dark:border-orange-800 hover:shadow-lg transition-shadow">
+                  <Card className="border-orange-200 dark:border-orange-800 hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/30">
                     <CardHeader className="text-center">
                       <Zap className="h-12 w-12 text-orange-500 dark:text-orange-400 mx-auto mb-2" />
                       <CardTitle className="text-orange-700 dark:text-orange-400">DDoS</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-gray-600 dark:text-gray-300 text-center">
+                      <p className="text-gray-600 dark:text-gray-300 text-center text-sm">
                         Ataques que sobrecarregam serviços
                       </p>
                     </CardContent>
                   </Card>
 
-                  <Card className="border-purple-200 dark:border-purple-800 hover:shadow-lg transition-shadow">
+                  <Card className="border-purple-200 dark:border-purple-800 hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/30">
                     <CardHeader className="text-center">
                       <Database className="h-12 w-12 text-purple-500 dark:text-purple-400 mx-auto mb-2" />
                       <CardTitle className="text-purple-700 dark:text-purple-400">Vazamento de Dados</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-gray-600 dark:text-gray-300 text-center">
+                      <p className="text-gray-600 dark:text-gray-300 text-center text-sm">
                         Exposição não autorizada de informações
                       </p>
                     </CardContent>
                   </Card>
 
-                  <Card className="border-blue-200 dark:border-blue-800 hover:shadow-lg transition-shadow">
+                  <Card className="border-blue-200 dark:border-blue-800 hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30">
                     <CardHeader className="text-center">
                       <Lock className="h-12 w-12 text-blue-500 dark:text-blue-400 mx-auto mb-2" />
                       <CardTitle className="text-blue-700 dark:text-blue-400">Acesso Indevido</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-gray-600 dark:text-gray-300 text-center">
+                      <p className="text-gray-600 dark:text-gray-300 text-center text-sm">
                         Invasões e tentativas de comprometimento
                       </p>
                     </CardContent>
@@ -292,742 +789,615 @@ export default function GTLFIPage() {
 
                 {/* Processo de Resposta */}
                 <div className="text-center mb-12">
-                  <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-4">O que é Resposta a Incidentes?</h4>
-                  <p className="text-lg text-gray-600 dark:text-gray-300 max-w-4xl mx-auto mb-8">
-                    A resposta a incidentes é o conjunto de ações tomadas para identificar, conter, mitigar e prevenir ameaças
-                    à segurança cibernética.
+                  <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+                    <span className="bg-gradient-to-r from-teal-600 to-cyan-600 dark:from-teal-400 dark:to-cyan-400 bg-clip-text text-transparent">
+                      O que é Resposta a Incidentes?
+                    </span>
+                  </h4>
+                  <p className="text-lg text-gray-600 dark:text-gray-300 max-w-5xl mx-auto mb-8 leading-relaxed">
+                    A resposta a incidentes é o conjunto de ações tomadas para <span className="font-semibold text-teal-600 dark:text-teal-400">identificar</span>, 
+                    <span className="font-semibold text-cyan-600 dark:text-cyan-400"> conter</span>, 
+                    <span className="font-semibold text-blue-600 dark:text-blue-400"> mitigar</span> e 
+                    <span className="font-semibold text-purple-600 dark:text-purple-400"> prevenir</span> ameaças à segurança cibernética.
                   </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  <div className="text-center">
-                    <div className="bg-blue-100 dark:bg-blue-900 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                      <Target className="h-8 w-8 text-blue-600 dark:text-blue-400" />
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                  <div className="text-center group">
+                    <div className="bg-gradient-to-r from-teal-500 to-teal-600 rounded-2xl p-6 w-20 h-20 mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                      <Target className="h-10 w-10 text-white" />
                     </div>
-                    <h5 className="font-semibold text-gray-900 dark:text-white mb-2">Identificação</h5>
+                    <h5 className="font-semibold text-gray-900 dark:text-white mb-2 text-lg">Identificação</h5>
                     <p className="text-gray-600 dark:text-gray-300 text-sm">
                       Reconhecer rapidamente ameaças
                     </p>
                   </div>
 
-                  <div className="text-center">
-                    <div className="bg-green-100 dark:bg-green-900 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                      <Shield className="h-8 w-8 text-green-600 dark:text-green-400" />
+                  <div className="text-center group">
+                    <div className="bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-2xl p-6 w-20 h-20 mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                      <Shield className="h-10 w-10 text-white" />
                     </div>
-                    <h5 className="font-semibold text-gray-900 dark:text-white mb-2">Contenção</h5>
+                    <h5 className="font-semibold text-gray-900 dark:text-white mb-2 text-lg">Contenção</h5>
                     <p className="text-gray-600 dark:text-gray-300 text-sm">
                       Impedir o avanço do incidente
                     </p>
                   </div>
 
-                  <div className="text-center">
-                    <div className="bg-orange-100 dark:bg-orange-900 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                      <Settings className="h-8 w-8 text-orange-600 dark:text-orange-400" />
+                  <div className="text-center group">
+                    <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl p-6 w-20 h-20 mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                      <Settings className="h-10 w-10 text-white" />
                     </div>
-                    <h5 className="font-semibold text-gray-900 dark:text-white mb-2">Mitigação</h5>
+                    <h5 className="font-semibold text-gray-900 dark:text-white mb-2 text-lg">Mitigação</h5>
                     <p className="text-gray-600 dark:text-gray-300 text-sm">
                       Reduzir impactos e danos
                     </p>
                   </div>
 
-                  <div className="text-center">
-                    <div className="bg-purple-100 dark:bg-purple-900 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                      <TrendingUp className="h-8 w-8 text-purple-600 dark:text-purple-400" />
+                  <div className="text-center group">
+                    <div className="bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl p-6 w-20 h-20 mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                      <TrendingUp className="h-10 w-10 text-white" />
                     </div>
-                    <h5 className="font-semibold text-gray-900 dark:text-white mb-2">Prevenção</h5>
+                    <h5 className="font-semibold text-gray-900 dark:text-white mb-2 text-lg">Prevenção</h5>
                     <p className="text-gray-600 dark:text-gray-300 text-sm">
                       Evitar incidentes futuros
                     </p>
                   </div>
                 </div>
               </div>
-            )}
+                         )}
 
-            {activeTab === "proposta" && (
-              <div>
-                <div className="text-center mb-12">
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Nossa Proposta</h3>
-                  <p className="text-lg text-gray-600 dark:text-gray-300 max-w-4xl mx-auto">
-                    Uma plataforma inovadora que combina gamificação, inteligência artificial e aprendizado colaborativo.
-                  </p>
-                </div>
+             {activeTab === "ferramentas" && (
+               <div className="animate-in fade-in duration-500">
+                 <div className="text-center mb-12">
+                   <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+                     <span className="bg-gradient-to-r from-teal-600 to-cyan-600 dark:from-teal-400 dark:to-cyan-400 bg-clip-text text-transparent">
+                       Ferramentas e Tecnologias
+                     </span>
+                   </h3>
+                   <p className="text-lg text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                     Stack tecnológico moderno utilizado no desenvolvimento do projeto, combinando 
+                     <span className="font-semibold text-teal-600 dark:text-teal-400"> inovação</span> e 
+                     <span className="font-semibold text-cyan-600 dark:text-cyan-400"> performance</span>.
+                   </p>
+                 </div>
+                 
+                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                   <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30">
+                     <CardContent className="p-8">
+                       <div className="bg-gradient-to-r from-blue-500 to-indigo-500 rounded-2xl p-4 w-20 h-20 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                         <FileText className="h-10 w-10 text-white" />
+                       </div>
+                       <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-lg">TypeScript</h4>
+                       <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">Linguagem fortemente tipada que adiciona tipos estáticos ao JavaScript.</p>
+                     </CardContent>
+                   </Card>
 
-                <div className="grid md:grid-cols-3 gap-8 mb-12">
-                  <Card className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900 dark:to-blue-800 border-blue-200 dark:border-blue-700 hover:shadow-xl transition-all">
-                    <CardHeader className="text-center">
-                      <div className="bg-blue-600 dark:bg-blue-500 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                        <Brain className="h-8 w-8 text-white" />
-                      </div>
-                      <CardTitle className="text-blue-800 dark:text-blue-200">Módulo de Inteligência</CardTitle>
-                      <CardDescription className="text-blue-600 dark:text-blue-300">
-                        Sistema de IA para análise automática
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <ul className="space-y-3 text-gray-700 dark:text-gray-300">
-                        <li className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                          <span>Análise preditiva</span>
-                        </li>
-                        <li className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                          <span>Respostas automatizadas</span>
-                        </li>
-                        <li className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                          <span>Aprendizado contínuo</span>
-                        </li>
-                      </ul>
-                    </CardContent>
-                  </Card>
+                   <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-cyan-50 to-cyan-100 dark:from-cyan-900/30 dark:to-cyan-800/30">
+                     <CardContent className="p-8">
+                       <div className="bg-gradient-to-r from-cyan-500 to-blue-500 rounded-2xl p-4 w-20 h-20 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                         <Zap className="h-10 w-10 text-white" />
+                       </div>
+                       <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-lg">React</h4>
+                       <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">Biblioteca JavaScript para construção de interfaces de usuário interativas.</p>
+                     </CardContent>
+                   </Card>
 
-                  <Card className="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900 dark:to-purple-800 border-purple-200 dark:border-purple-700 hover:shadow-xl transition-all">
-                    <CardHeader className="text-center">
-                      <div className="bg-purple-600 dark:bg-purple-500 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                        <FileText className="h-8 w-8 text-white" />
-                      </div>
-                      <CardTitle className="text-purple-800 dark:text-purple-200">Módulo PoP</CardTitle>
-                      <CardDescription className="text-purple-600 dark:text-purple-300">
-                        Procedimentos operacionais padrão
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <ul className="space-y-3 text-gray-700 dark:text-gray-300">
-                        <li className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                          <span>Workflows personalizados</span>
-                        </li>
-                        <li className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                          <span>Documentação integrada</span>
-                        </li>
-                        <li className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                          <span>Métricas de eficiência</span>
-                        </li>
-                      </ul>
-                    </CardContent>
-                  </Card>
+                   <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700/30 dark:to-gray-600/30">
+                     <CardContent className="p-8">
+                       <div className="bg-gradient-to-r from-gray-600 to-gray-700 dark:from-gray-500 dark:to-gray-600 rounded-2xl p-4 w-20 h-20 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                         <Settings className="h-10 w-10 text-white" />
+                       </div>
+                       <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-lg">Next.js</h4>
+                       <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">Framework React que oferece renderização híbrida e otimizações de performance.</p>
+                     </CardContent>
+                   </Card>
 
-                  <Card className="bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900 dark:to-green-800 border-green-200 dark:border-green-700 hover:shadow-xl transition-all">
-                    <CardHeader className="text-center">
-                      <div className="bg-green-600 dark:bg-green-500 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-                        <UserCheck className="h-8 w-8 text-white" />
-                      </div>
-                      <CardTitle className="text-green-800 dark:text-green-200">Módulo Hackers do Bem</CardTitle>
-                      <CardDescription className="text-green-600 dark:text-green-300">
-                        Treinamento e certificação
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <ul className="space-y-3 text-gray-700 dark:text-gray-300">
-                        <li className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                          <span>Simulações realistas</span>
-                        </li>
-                        <li className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                          <span>Certificações</span>
-                        </li>
-                        <li className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                          <span>Mentoria especializada</span>
-                        </li>
-                      </ul>
-                    </CardContent>
-                  </Card>
-                </div>
+                   <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-teal-50 to-teal-100 dark:from-teal-900/30 dark:to-teal-800/30">
+                     <CardContent className="p-8">
+                       <div className="bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl p-4 w-20 h-20 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                         <Target className="h-10 w-10 text-white" />
+                       </div>
+                       <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-lg">Tailwind CSS</h4>
+                       <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">Framework CSS utilitário para design rápido e responsivo.</p>
+                     </CardContent>
+                   </Card>
 
-                {/* Benefícios */}
-                <div className="text-center mb-8">
-                  <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Benefícios da Plataforma</h4>
-                  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">Gamificação</div>
-                      <div className="text-gray-600 dark:text-gray-300 text-sm">Aprendizado envolvente</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">IA</div>
-                      <div className="text-gray-600 dark:text-gray-300 text-sm">Análise inteligente</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">Colaboração</div>
-                      <div className="text-gray-600 dark:text-gray-300 text-sm">Aprendizado social</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-orange-600 dark:text-orange-400 mb-2">Prático</div>
-                      <div className="text-gray-600 dark:text-gray-300 text-sm">Casos reais</div>
-                    </div>
+                   <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/30">
+                     <CardContent className="p-8">
+                       <div className="bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl p-4 w-20 h-20 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                         <Database className="h-10 w-10 text-white" />
+                       </div>
+                       <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-lg">Express.js</h4>
+                       <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">Framework web rápido e minimalista para Node.js.</p>
+                     </CardContent>
+                   </Card>
+
+                   <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/30 dark:to-red-800/30">
+                     <CardContent className="p-8">
+                       <div className="bg-gradient-to-r from-red-500 to-pink-500 rounded-2xl p-4 w-20 h-20 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                         <Brain className="h-10 w-10 text-white" />
+                       </div>
+                       <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-lg">Google Gemini</h4>
+                       <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">Modelo de IA avançado do Google para processamento de linguagem natural.</p>
+                     </CardContent>
+                   </Card>
+
+                   <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/30">
+                     <CardContent className="p-8">
+                       <div className="bg-gradient-to-r from-purple-500 to-violet-500 rounded-2xl p-4 w-20 h-20 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                         <Shield className="h-10 w-10 text-white" />
+                       </div>
+                       <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-lg">Vercel AI SDK</h4>
+                       <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">SDK para integração simplificada de modelos de IA em aplicações web.</p>
+                     </CardContent>
+                   </Card>
+
+                   <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/30">
+                     <CardContent className="p-8">
+                       <div className="bg-gradient-to-r from-orange-500 to-yellow-500 rounded-2xl p-4 w-20 h-20 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                         <Database className="h-10 w-10 text-white" />
+                       </div>
+                       <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-lg">Pinecone</h4>
+                       <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">Banco de dados vetorial para busca semântica e similaridade.</p>
+                     </CardContent>
+                   </Card>
+
+                   <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-900/30 dark:to-yellow-800/30">
+                     <CardContent className="p-8">
+                       <div className="bg-gradient-to-r from-yellow-500 to-orange-500 rounded-2xl p-4 w-20 h-20 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                         <Zap className="h-10 w-10 text-white" />
+                       </div>
+                       <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-lg">Firebase</h4>
+                       <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">Plataforma de desenvolvimento que oferece diversos serviços backend como serviço.</p>
+                     </CardContent>
+                   </Card>
+                 </div>
+               </div>
+             )}
+
+             {activeTab === "financiadores" && (
+               <div className="animate-in fade-in duration-500">
+                 <div className="text-center mb-12">
+                   <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+                     <span className="bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">
+                       Financiadores e Parceiros
+                     </span>
+                   </h3>
+                   <p className="text-lg text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                     Apoio institucional que torna nossa pesquisa possível, com 
+                     <span className="font-semibold text-amber-600 dark:text-amber-400"> parceria estratégica</span> 
+                     que impulsiona a inovação em cibersegurança.
+                   </p>
+                 </div>
+                 
+                 <div className="flex justify-center">
+                   <Card className="text-center group hover:shadow-2xl transition-all duration-500 transform hover:scale-105 max-w-2xl bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border-2 border-amber-200 dark:border-amber-700">
+                     <CardContent className="p-12">
+                       <div className="flex items-center justify-center gap-8 mb-8">
+                         <div className="group-hover:scale-110 transition-transform duration-300">
+                           <img 
+                             src="/logo-rnp.png" 
+                             alt="RNP Logo" 
+                             className="h-20 object-contain filter drop-shadow-lg"
+                           />
+                         </div>
+                         <div className="group-hover:scale-110 transition-transform duration-300">
+                           <img 
+                             src="/logo-hackers-do-bem.svg" 
+                             alt="Hackers do Bem Logo" 
+                             className="h-20 object-contain filter drop-shadow-lg"
+                           />
+                         </div>
+                       </div>
+                       <h4 className="font-bold text-gray-900 dark:text-white mb-3 text-2xl">
+                         <span className="bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent">
+                           RNP & Hackers do Bem
+                         </span>
+                       </h4>
+                       <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
+                         <span className="font-semibold">Rede Nacional de Ensino e Pesquisa</span> em parceria com o programa 
+                         <span className="font-semibold"> Hackers do Bem</span>, promovendo a formação de especialistas em cibersegurança.
+                       </p>
+                     </CardContent>
+                   </Card>
+                 </div>
+               </div>
+             )}
+
+             {activeTab === "publicacoes" && (
+               <div className="animate-in fade-in duration-500">
+                 <div className="text-center mb-12">
+                   <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+                     <span className="bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
+                       Publicações Científicas
+                     </span>
+                   </h3>
+                   <p className="text-lg text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                     Artigos e pesquisas resultantes do projeto, contribuindo para o 
+                     <span className="font-semibold text-indigo-600 dark:text-indigo-400"> avanço científico</span> 
+                     na área de cibersegurança.
+                   </p>
+                 </div>
+                 
+                 <div className="flex flex-col items-center justify-center py-16">
+                   <div className="bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/30 dark:to-purple-900/30 rounded-full p-8 w-32 h-32 flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-300">
+                     <FileText className="h-16 w-16 text-indigo-500 dark:text-indigo-400" />
+                   </div>
+                   <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                     <span className="bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
+                       Em Desenvolvimento
+                     </span>
+                   </h4>
+                   <p className="text-gray-600 dark:text-gray-300 text-center max-w-lg leading-relaxed mb-8">
+                     Nosso projeto está atualmente em fase de desenvolvimento e pesquisa ativa. 
+                     As publicações científicas serão disponibilizadas conforme os resultados forem obtidos e validados.
+                   </p>
+                   <div className="flex gap-4">
+                     <Badge className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-4 py-2">
+                       <BookOpen className="w-4 h-4 mr-2" />
+                       Pesquisa em Andamento
+                     </Badge>
+                     <Badge className="bg-gradient-to-r from-teal-500 to-cyan-500 text-white px-4 py-2">
+                       <Target className="w-4 h-4 mr-2" />
+                       Resultados Promissores
+                     </Badge>
+                   </div>
+                 </div>
+               </div>
+             )}
+           </div>
                   </div>
-                </div>
-              </div>
-            )}
+       </section>
 
-            {activeTab === "produtos" && (
-              <div>
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Produtos Gerados</h3>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    Conheça as ferramentas desenvolvidas pelo nosso projeto de pesquisa
-                  </p>
-                </div>
-                <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                  <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-blue-200 dark:hover:border-blue-700">
-                    <CardHeader className="text-center pb-4">
-                      <div className="bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900 dark:to-blue-800 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <Shield className="h-8 w-8 text-blue-600 dark:text-blue-400" />
-                      </div>
-                      <CardTitle className="text-xl text-gray-900 dark:text-white">Anon-LFI</CardTitle>
-                      <CardDescription className="text-gray-600 dark:text-gray-300">
-                        Ferramenta de Anonimização de Tickets
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="pt-0">
-                      <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
-                        Desenvolvida para anonimizar tickets de incidentes, removendo todos os dados sensíveis 
-                        de forma segura e eficiente, preservando a utilidade dos dados para análise.
-                      </p>
-                      <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-300 mb-6">
-                        <li className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                          <span>Anonimização automática</span>
-                        </li>
-                        <li className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                          <span>Preservação de dados úteis</span>
-                        </li>
-                        <li className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                          <span>Conformidade com LGPD</span>
-                        </li>
-                      </ul>
-                      <Button variant="outline" className="w-full border-blue-600 text-blue-600 hover:bg-blue-50" disabled>
-                        <Lock className="h-4 w-4 mr-2" />
-                        Ferramenta não disponível ao público
-                      </Button>
-                    </CardContent>
-                  </Card>
+       {/* Seção da Equipe */}
+       <section id="equipe" className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-900 dark:to-blue-900">
+         <div className="max-w-7xl mx-auto">
+           <div className="text-center mb-16">
+             <div className="animate-in fade-in slide-in-from-bottom duration-1000">
+               <Badge className="bg-gradient-to-r from-violet-500 to-purple-500 text-white mb-6 px-4 py-2">
+                 Especialistas Dedicados
+               </Badge>
+               <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                 <span className="bg-gradient-to-r from-gray-900 to-violet-800 dark:from-white dark:to-violet-200 bg-clip-text text-transparent">
+                   Nossa Equipe
+                 </span>
+               </h2>
+               <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                 Especialistas dedicados em <span className="font-semibold text-violet-600 dark:text-violet-400">cibersegurança</span> e 
+                 <span className="font-semibold text-purple-600 dark:text-purple-400"> educação tecnológica</span>, unidos pela paixão de 
+                 <span className="font-semibold text-blue-600 dark:text-blue-400"> transformar o aprendizado</span>.
+               </p>
+             </div>
+           </div>
 
-                  <Card className="group hover:shadow-xl transition-all duration-300 border-2 hover:border-purple-200 dark:hover:border-purple-700">
-                    <CardHeader className="text-center pb-4">
-                      <div className="bg-gradient-to-br from-purple-100 to-purple-200 dark:from-purple-900 dark:to-purple-800 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <Brain className="h-8 w-8 text-purple-600 dark:text-purple-400" />
-                      </div>
-                      <CardTitle className="text-xl text-gray-900 dark:text-white">Sentinel-LFI</CardTitle>
-                      <CardDescription className="text-gray-600 dark:text-gray-300">
-                        Ferramenta de IA para Gestão de Incidentes
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="pt-0">
-                      <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
-                        Sistema inteligente desenvolvido para categorizar incidentes utilizando padrões NIST, 
-                        CERT e LLM, além de gerar playbooks automatizados e gerenciar tickets de forma eficiente.
-                      </p>
-                      <ul className="space-y-3 text-sm text-gray-600 dark:text-gray-300 mb-6">
-                        <li className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                          <span>Categorização NIST/CERT</span>
-                        </li>
-                        <li className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                          <span>Geração de playbooks</span>
-                        </li>
-                        <li className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                          <span>Gestão inteligente de tickets</span>
-                        </li>
-                      </ul>
-                      <Button variant="outline" className="w-full border-purple-600 text-purple-600 hover:bg-purple-50" disabled>
-                        <Lock className="h-4 w-4 mr-2" />
-                        Ferramenta não disponível ao público
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </div>
-                
-                {/* Estatísticas dos Produtos */}
-                <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-6">
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">2</div>
-                    <div className="text-gray-600 dark:text-gray-300 text-sm">Produtos Desenvolvidos</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">P&D</div>
-                    <div className="text-gray-600 dark:text-gray-300 text-sm">Pesquisa & Desenvolvimento</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">IA</div>
-                    <div className="text-gray-600 dark:text-gray-300 text-sm">Powered</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-orange-600 dark:text-orange-400 mb-2">24/7</div>
-                    <div className="text-gray-600 dark:text-gray-300 text-sm">Disponibilidade</div>
-                  </div>
-                </div>
-              </div>
-            )}
+           {/* Coordenador */}
+           <div className="mb-16">
+             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+               <span className="bg-gradient-to-r from-violet-600 to-purple-600 dark:from-violet-400 dark:to-purple-400 bg-clip-text text-transparent">
+                 Coordenador
+               </span>
+             </h3>
+             <div className="flex justify-center">
+               <div className="animate-in fade-in slide-in-from-bottom duration-1000">
+                 <Card className="text-center group hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 max-w-md bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-900/20 dark:to-purple-900/20 border-2 border-violet-200 dark:border-violet-700">
+                   <CardContent className="p-8">
+                     <div className="bg-gradient-to-r from-violet-500 to-purple-500 rounded-full p-6 w-24 h-24 mx-auto mb-6 flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-500 group-hover:scale-110">
+                       <Award className="h-12 w-12 text-white" />
+                     </div>
+                     <h4 className="font-bold text-gray-900 dark:text-white mb-2 text-xl">Dr. Rodrigo Sanches Miani</h4>
+                     <p className="text-violet-600 dark:text-violet-400 text-lg font-semibold mb-3">Coordenador</p>
+                     <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                       Doutor em Engenharia Elétrica e pesquisador em Cibersegurança. Professor na Universidade Federal de Uberlândia, 
+                       líder na coordenação de projetos inovadores em segurança digital.
+                     </p>
+                   </CardContent>
+                 </Card>
+               </div>
+             </div>
+           </div>
 
-            {activeTab === "aprendizado" && (
-              <div>
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Aprendizado Inovador</h3>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    Nossa abordagem gamificada torna o aprendizado em cibersegurança envolvente
-                  </p>
-                </div>
-                <div className="grid lg:grid-cols-2 gap-8 items-center">
-                  <div>
-                    <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Plataforma Intuitiva</h4>
-                    <p className="text-gray-600 dark:text-gray-300 mb-6">
-                      Interface amigável que torna o aprendizado acessível e envolvente através de gamificação.
-                    </p>
-                    <div className="space-y-4">
-                      <div className="flex items-center space-x-3">
-                        <Gamepad2 className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-                        <span className="text-gray-700 dark:text-gray-300">Gamificação Envolvente</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <Brain className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-                        <span className="text-gray-700 dark:text-gray-300">Aprendizado Adaptativo</span>
-                      </div>
-                      <div className="flex items-center space-x-3">
-                        <BookOpen className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-                        <span className="text-gray-700 dark:text-gray-300">Casos Reais</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <Card className="text-center">
-                      <CardContent className="p-4">
-                        <Award className="h-8 w-8 text-blue-600 dark:text-blue-400 mx-auto mb-2" />
-                        <p className="font-semibold text-gray-900 dark:text-white">Certificações</p>
-                      </CardContent>
-                    </Card>
-                    <Card className="text-center">
-                      <CardContent className="p-4">
-                        <BarChart3 className="h-8 w-8 text-green-600 dark:text-green-400 mx-auto mb-2" />
-                        <p className="font-semibold text-gray-900 dark:text-white">Progresso</p>
-                      </CardContent>
-                    </Card>
-                    <Card className="text-center">
-                      <CardContent className="p-4">
-                        <Users className="h-8 w-8 text-purple-600 dark:text-purple-400 mx-auto mb-2" />
-                        <p className="font-semibold text-gray-900 dark:text-white">Comunidade</p>
-                      </CardContent>
-                    </Card>
-                    <Card className="text-center">
-                      <CardContent className="p-4">
-                        <Target className="h-8 w-8 text-orange-600 dark:text-orange-400 mx-auto mb-2" />
-                        <p className="font-semibold text-gray-900 dark:text-white">Desafios</p>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </div>
-              </div>
-            )}
+           {/* Professores */}
+           <div className="mb-16">
+             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+               <span className="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">
+                 Professores Pesquisadores
+               </span>
+             </h3>
+             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+               <div className="animate-in fade-in slide-in-from-left duration-1000">
+                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 h-80">
+                   <CardContent className="p-6 h-full flex flex-col justify-between">
+                     <div>
+                       <div className="bg-gradient-to-r from-purple-500 to-violet-500 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110">
+                         <Brain className="h-10 w-10 text-white" />
+                       </div>
+                       <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Dr. Silvio Ereno Quincozes</h4>
+                       <p className="text-purple-600 dark:text-purple-400 text-sm font-medium mb-2">Pesquisador</p>
+                       <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">
+                         Doutor em Ciência da Computação com foco em Cibersegurança. Professor na Universidade Federal do Pampa.
+                       </p>
+                     </div>
+                   </CardContent>
+                 </Card>
+               </div>
 
-            {activeTab === "equipe" && (
-              <div>
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Nossa Equipe</h3>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    Especialistas dedicados em cibersegurança e educação tecnológica
-                  </p>
-                </div>
+               <div className="animate-in fade-in slide-in-from-bottom duration-1000 delay-100">
+                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 h-80">
+                   <CardContent className="p-6 h-full flex flex-col justify-between">
+                     <div>
+                       <div className="bg-gradient-to-r from-green-500 to-emerald-500 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110">
+                         <Shield className="h-10 w-10 text-white" />
+                       </div>
+                       <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Dr. Diego Luis Kreutz</h4>
+                       <p className="text-green-600 dark:text-green-400 text-sm font-medium mb-2">Pesquisador</p>
+                       <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">
+                         Pesquisador em Cibersegurança e professor na Universidade Federal do Pampa.
+                       </p>
+                     </div>
+                   </CardContent>
+                 </Card>
+               </div>
 
-                {/* Coordenador */}
-                <div className="mb-8">
-                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 text-center">Coordenador</h4>
-                  <div className="flex justify-center">
-                    <Card className="text-center hover:shadow-lg transition-shadow max-w-sm">
-                      <CardContent className="p-6">
-                        <div className="w-20 h-20 bg-blue-100 dark:bg-blue-900 rounded-full mx-auto mb-4 flex items-center justify-center">
-                          <Award className="h-10 w-10 text-blue-600 dark:text-blue-400" />
-                        </div>
-                        <h5 className="font-semibold text-gray-900 dark:text-white mb-2">Dr. Rodrigo Sanches Miani</h5>
-                        <p className="text-gray-600 dark:text-gray-300 text-sm mb-2">Coordenador</p>
-                        <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">
-                          Doutor em Engenharia Elétrica e pesquisador em Cibersegurança. Professor na Universidade Federal de Uberlândia.
-                        </p>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </div>
+               <div className="animate-in fade-in slide-in-from-bottom duration-1000 delay-200">
+                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 h-80">
+                   <CardContent className="p-6 h-full flex flex-col justify-between">
+                     <div>
+                       <div className="bg-gradient-to-r from-orange-500 to-red-500 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110">
+                         <Database className="h-10 w-10 text-white" />
+                       </div>
+                       <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Dr. Leandro Bertholdo</h4>
+                       <p className="text-orange-600 dark:text-orange-400 text-sm font-medium mb-2">Pesquisador</p>
+                       <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed mb-3">
+                         Doutor em redes com foco em segurança. Professor na Universidade Federal do Rio Grande do Sul.
+                       </p>
+                     </div>
+                     <div className="mt-3">
+                       <Link href="https://www.linkedin.com/in/leandro-bertholdo-3379411/" target="_blank" 
+                             className="text-orange-600 dark:text-orange-400 hover:text-orange-800 text-xs font-medium">
+                         LinkedIn
+                       </Link>
+                     </div>
+                   </CardContent>
+                 </Card>
+               </div>
 
-                {/* Professores */}
-                <div className="mb-8">
-                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 text-center">Professores</h4>
-                  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <Card className="text-center hover:shadow-lg transition-shadow">
-                      <CardContent className="p-6">
-                        <div className="w-20 h-20 bg-purple-100 dark:bg-purple-900 rounded-full mx-auto mb-4 flex items-center justify-center">
-                          <Brain className="h-10 w-10 text-purple-600 dark:text-purple-400" />
-                        </div>
-                        <h5 className="font-semibold text-gray-900 dark:text-white mb-2">Dr. Silvio Ereno Quincozes</h5>
-                        <p className="text-gray-600 dark:text-gray-300 text-sm mb-2">Pesquisador</p>
-                        <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">
-                          Doutor em Ciência da Computação com foco em Cibersegurança. Professor na Universidade Federal do Pampa.
-                        </p>
-                      </CardContent>
-                    </Card>
+               <div className="animate-in fade-in slide-in-from-right duration-1000 delay-300">
+                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-900/20 dark:to-indigo-800/20 h-80">
+                   <CardContent className="p-6 h-full flex flex-col justify-between">
+                     <div>
+                       <div className="bg-gradient-to-r from-indigo-500 to-blue-500 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110">
+                         <Users className="h-10 w-10 text-white" />
+                       </div>
+                       <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Dr. Rafael Dias Araújo</h4>
+                       <p className="text-indigo-600 dark:text-indigo-400 text-sm font-medium mb-2">Pesquisador</p>
+                       <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">
+                         Doutor em Ciência da Computação e pesquisador em Informática na Educação e Interação Humano-Computador. Professor na UFU.
+                       </p>
+                     </div>
+                   </CardContent>
+                 </Card>
+               </div>
+             </div>
+           </div>
 
-                    <Card className="text-center hover:shadow-lg transition-shadow">
-                      <CardContent className="p-6">
-                        <div className="w-20 h-20 bg-green-100 dark:bg-green-900 rounded-full mx-auto mb-4 flex items-center justify-center">
-                          <Shield className="h-10 w-10 text-green-600 dark:text-green-400" />
-                        </div>
-                        <h5 className="font-semibold text-gray-900 dark:text-white mb-2">Dr. Diego Luis Kreutz</h5>
-                        <p className="text-gray-600 dark:text-gray-300 text-sm mb-2">Pesquisador</p>
-                        <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">
-                          Pesquisador em Cibersegurança e professor na Universidade Federal do Pampa.
-                        </p>
-                      </CardContent>
-                    </Card>
+           {/* Bolsistas */}
+           <div>
+             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+               <span className="bg-gradient-to-r from-teal-600 to-cyan-600 dark:from-teal-400 dark:to-cyan-400 bg-clip-text text-transparent">
+                 Bolsistas Pesquisadores
+               </span>
+             </h3>
+             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+               <div className="animate-in fade-in slide-in-from-left duration-1000">
+                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-teal-50 to-teal-100 dark:from-teal-900/20 dark:to-teal-800/20 h-96">
+                   <CardContent className="p-6 h-full flex flex-col justify-between">
+                     <div>
+                       <div className="bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110">
+                         <Gamepad2 className="h-10 w-10 text-white" />
+                       </div>
+                       <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Felipe Homrich Scherer</h4>
+                       <p className="text-teal-600 dark:text-teal-400 text-sm font-medium mb-2">Pesquisador</p>
+                       <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed mb-3">
+                         Graduando de Engenharia de Software pela Universidade Federal do Pampa, com foco em pesquisas nas áreas de cibersegurança.
+                       </p>
+                     </div>
+                     <div className="flex justify-center space-x-3 text-xs">
+                       <Link href="https://www.linkedin.com/in/felipehscherer/" target="_blank" 
+                             className="text-teal-600 dark:text-teal-400 hover:text-teal-800 font-medium">
+                         LinkedIn
+                       </Link>
+                       <Link href="http://lattes.cnpq.br/0515811498958707" target="_blank" 
+                             className="text-green-600 dark:text-green-400 hover:text-green-800 font-medium">
+                         Lattes
+                       </Link>
+                     </div>
+                   </CardContent>
+                 </Card>
+               </div>
 
-                    <Card className="text-center hover:shadow-lg transition-shadow">
-                      <CardContent className="p-6">
-                        <div className="w-20 h-20 bg-orange-100 dark:bg-orange-900 rounded-full mx-auto mb-4 flex items-center justify-center">
-                          <Database className="h-10 w-10 text-orange-600 dark:text-orange-400" />
-                        </div>
-                        <h5 className="font-semibold text-gray-900 dark:text-white mb-2">Dr. Leandro Bertholdo</h5>
-                        <p className="text-gray-600 dark:text-gray-300 text-sm mb-2">Pesquisador</p>
-                        <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">
-                          Doutor em redes com foco em segurança. Professor na Universidade Federal do Rio Grande do Sul.
-                        </p>
-                        <div className="mt-3">
-                          <Link href="https://www.linkedin.com/in/leandro-bertholdo-3379411/" target="_blank" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 text-xs">
-                            LinkedIn
-                          </Link>
-                        </div>
-                      </CardContent>
-                    </Card>
+               <div className="animate-in fade-in slide-in-from-bottom duration-1000 delay-100">
+                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-cyan-50 to-cyan-100 dark:from-cyan-900/20 dark:to-cyan-800/20 h-96">
+                   <CardContent className="p-6 h-full flex flex-col justify-between">
+                     <div>
+                       <div className="bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110">
+                         <Settings className="h-10 w-10 text-white" />
+                       </div>
+                       <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Felipe Nestor Dresch</h4>
+                       <p className="text-cyan-600 dark:text-cyan-400 text-sm font-medium mb-2">Pesquisador</p>
+                       <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed mb-3">
+                         Graduando em Engenharia de Software pela Universidade Federal do Pampa e Técnico em Informática pelo IFRS.
+                       </p>
+                     </div>
+                     <div className="flex justify-center text-xs">
+                       <Link href="https://www.linkedin.com/in/felipe-dresch-066046237/" target="_blank" 
+                             className="text-cyan-600 dark:text-cyan-400 hover:text-cyan-800 font-medium">
+                         LinkedIn
+                       </Link>
+                     </div>
+                   </CardContent>
+                 </Card>
+               </div>
 
-                    <Card className="text-center hover:shadow-lg transition-shadow">
-                      <CardContent className="p-6">
-                        <div className="w-20 h-20 bg-indigo-100 dark:bg-indigo-900 rounded-full mx-auto mb-4 flex items-center justify-center">
-                          <Users className="h-10 w-10 text-indigo-600 dark:text-indigo-400" />
-                        </div>
-                        <h5 className="font-semibold text-gray-900 dark:text-white mb-2">Dr. Rafael Dias Araújo</h5>
-                        <p className="text-gray-600 dark:text-gray-300 text-sm mb-2">Pesquisador</p>
-                        <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">
-                          Doutor em Ciência da Computação e pesquisador em Informática na Educação e Interação Humano-Computador. Professor na UFU.
-                        </p>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </div>
+               <div className="animate-in fade-in slide-in-from-bottom duration-1000 delay-200">
+                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-pink-50 to-pink-100 dark:from-pink-900/20 dark:to-pink-800/20 h-96">
+                   <CardContent className="p-6 h-full flex flex-col justify-between">
+                     <div>
+                       <div className="bg-gradient-to-r from-pink-500 to-rose-500 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110">
+                         <BookOpen className="h-10 w-10 text-white" />
+                       </div>
+                       <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Me. Sebastião A. de Jesus F.</h4>
+                       <p className="text-pink-600 dark:text-pink-400 text-sm font-medium mb-2">Pesquisador</p>
+                       <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">
+                         Doutorando em Ciência da Computação e Técnico de Laboratório de Informática na Universidade Federal de Uberlândia.
+                       </p>
+                     </div>
+                   </CardContent>
+                 </Card>
+               </div>
 
-                {/* Bolsistas */}
-                <div>
-                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 text-center">Bolsistas</h4>
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <Card className="text-center hover:shadow-lg transition-shadow">
-                      <CardContent className="p-6">
-                        <div className="w-20 h-20 bg-teal-100 dark:bg-teal-900 rounded-full mx-auto mb-4 flex items-center justify-center">
-                          <Gamepad2 className="h-10 w-10 text-teal-600 dark:text-teal-400" />
-                        </div>
-                        <h5 className="font-semibold text-gray-900 dark:text-white mb-2">Felipe Homrich Scherer</h5>
-                        <p className="text-gray-600 dark:text-gray-300 text-sm mb-2">Pesquisador</p>
-                        <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed mb-3">
-                          Graduando de Engenharia de Software pela Universidade Federal do Pampa, com foco em pesquisas nas áreas de cibersegurança.
-                        </p>
-                        <div className="flex justify-center space-x-3 text-xs">
-                          <Link href="https://www.linkedin.com/in/felipehscherer/" target="_blank" className="text-blue-600 dark:text-blue-400 hover:text-blue-800">
-                            LinkedIn
-                          </Link>
-                          <Link href="http://lattes.cnpq.br/0515811498958707" target="_blank" className="text-green-600 dark:text-green-400 hover:text-green-800">
-                            Lattes
-                          </Link>
-                        </div>
-                      </CardContent>
-                    </Card>
+               <div className="animate-in fade-in slide-in-from-bottom duration-1000 delay-300">
+                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-900/20 dark:to-yellow-800/20 h-96">
+                   <CardContent className="p-6 h-full flex flex-col justify-between">
+                     <div>
+                       <div className="bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110">
+                         <BarChart3 className="h-10 w-10 text-white" />
+                       </div>
+                       <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Alvaro Santana</h4>
+                       <p className="text-yellow-600 dark:text-yellow-400 text-sm font-medium mb-2">Pesquisador</p>
+                       <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed mb-3">
+                         Mestrando em Ciência da Computação pela Universidade Federal de Uberlândia e Consultor de Soluções na empresa Accenture.
+                       </p>
+                     </div>
+                     <div className="flex justify-center text-xs">
+                       <Link href="https://www.linkedin.com/in/alvaro-s-santos/" target="_blank" 
+                             className="text-yellow-600 dark:text-yellow-400 hover:text-yellow-800 font-medium">
+                         LinkedIn
+                       </Link>
+                     </div>
+                   </CardContent>
+                 </Card>
+               </div>
 
-                    <Card className="text-center hover:shadow-lg transition-shadow">
-                      <CardContent className="p-6">
-                        <div className="w-20 h-20 bg-cyan-100 dark:bg-cyan-900 rounded-full mx-auto mb-4 flex items-center justify-center">
-                          <Settings className="h-10 w-10 text-cyan-600 dark:text-cyan-400" />
-                        </div>
-                        <h5 className="font-semibold text-gray-900 dark:text-white mb-2">Felipe Nestor Dresch</h5>
-                        <p className="text-gray-600 dark:text-gray-300 text-sm mb-2">Pesquisador</p>
-                        <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed mb-3">
-                          Graduando em Engenharia de Software pela Universidade Federal do Pampa e Técnico em Informática pelo IFRS.
-                        </p>
-                        <div className="flex justify-center text-xs">
-                          <Link href="https://www.linkedin.com/in/felipe-dresch-066046237/" target="_blank" className="text-blue-600 dark:text-blue-400 hover:text-blue-800">
-                            LinkedIn
-                          </Link>
-                        </div>
-                      </CardContent>
-                    </Card>
+               <div className="animate-in fade-in slide-in-from-bottom duration-1000 delay-400">
+                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/20 h-96">
+                   <CardContent className="p-6 h-full flex flex-col justify-between">
+                     <div>
+                       <div className="bg-gradient-to-r from-emerald-500 to-green-500 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110">
+                         <Target className="h-10 w-10 text-white" />
+                       </div>
+                       <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Carolina Bandel</h4>
+                       <p className="text-emerald-600 dark:text-emerald-400 text-sm font-medium mb-2">Pesquisador</p>
+                       <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">
+                         Graduanda em Gestão de Tecnologia da Informação pelo Senac SP.
+                       </p>
+                     </div>
+                   </CardContent>
+                 </Card>
+               </div>
 
-                    <Card className="text-center hover:shadow-lg transition-shadow">
-                      <CardContent className="p-6">
-                        <div className="w-20 h-20 bg-pink-100 dark:bg-pink-900 rounded-full mx-auto mb-4 flex items-center justify-center">
-                          <BookOpen className="h-10 w-10 text-pink-600 dark:text-pink-400" />
-                        </div>
-                        <h5 className="font-semibold text-gray-900 dark:text-white mb-2">Me. Sebastião A. de Jesus F.</h5>
-                        <p className="text-gray-600 dark:text-gray-300 text-sm mb-2">Pesquisador</p>
-                        <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">
-                          Doutorando em Ciência da Computação e Técnico de Laboratório de Informática na Universidade Federal de Uberlândia.
-                        </p>
-                      </CardContent>
-                    </Card>
+               <div className="animate-in fade-in slide-in-from-right duration-1000 delay-500">
+                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900/20 dark:to-slate-800/20 h-96">
+                   <CardContent className="p-6 h-full flex flex-col justify-between">
+                     <div>
+                       <div className="bg-gradient-to-r from-slate-500 to-gray-500 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110">
+                         <Zap className="h-10 w-10 text-white" />
+                       </div>
+                       <h4 className="font-semibold text-gray-900 dark:text-white mb-2">João Pedro Ramires Esteves</h4>
+                       <p className="text-slate-600 dark:text-slate-400 text-sm font-medium mb-2">Pesquisador</p>
+                       <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">
+                         Graduando em Ciências da Computação pela Universidade Federal de Uberlândia.
+                       </p>
+                     </div>
+                   </CardContent>
+                 </Card>
+               </div>
+             </div>
+           </div>
+         </div>
+       </section>
 
-                    <Card className="text-center hover:shadow-lg transition-shadow">
-                      <CardContent className="p-6">
-                        <div className="w-20 h-20 bg-yellow-100 dark:bg-yellow-900 rounded-full mx-auto mb-4 flex items-center justify-center">
-                          <BarChart3 className="h-10 w-10 text-yellow-600 dark:text-yellow-400" />
-                        </div>
-                        <h5 className="font-semibold text-gray-900 dark:text-white mb-2">Alvaro Santana</h5>
-                        <p className="text-gray-600 dark:text-gray-300 text-sm mb-2">Pesquisador</p>
-                        <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed mb-3">
-                          Mestrando em Ciência da Computação pela Universidade Federal de Uberlândia e Consultor de Soluções na empresa Accenture.
-                        </p>
-                        <div className="flex justify-center text-xs">
-                          <Link href="https://www.linkedin.com/in/alvaro-s-santos/" target="_blank" className="text-blue-600 dark:text-blue-400 hover:text-blue-800">
-                            LinkedIn
-                          </Link>
-                        </div>
-                      </CardContent>
-                    </Card>
-
-                    <Card className="text-center hover:shadow-lg transition-shadow">
-                      <CardContent className="p-6">
-                        <div className="w-20 h-20 bg-emerald-100 dark:bg-emerald-900 rounded-full mx-auto mb-4 flex items-center justify-center">
-                          <Target className="h-10 w-10 text-emerald-600 dark:text-emerald-400" />
-                        </div>
-                        <h5 className="font-semibold text-gray-900 dark:text-white mb-2">Carolina Bandel</h5>
-                        <p className="text-gray-600 dark:text-gray-300 text-sm mb-2">Pesquisador</p>
-                        <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">
-                          Graduanda em Gestão de Tecnologia da Informação pelo Senac SP.
-                        </p>
-                      </CardContent>
-                    </Card>
-
-                    <Card className="text-center hover:shadow-lg transition-shadow">
-                      <CardContent className="p-6">
-                        <div className="w-20 h-20 bg-slate-100 dark:bg-slate-900 rounded-full mx-auto mb-4 flex items-center justify-center">
-                          <Zap className="h-10 w-10 text-slate-600 dark:text-slate-400" />
-                        </div>
-                        <h5 className="font-semibold text-gray-900 dark:text-white mb-2">João Pedro Ramires Esteves</h5>
-                        <p className="text-gray-600 dark:text-gray-300 text-sm mb-2">Pesquisador</p>
-                        <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">
-                          Graduando em Ciências da Computação pela Universidade Federal de Uberlândia.
-                        </p>
-                      </CardContent>
-                    </Card>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {activeTab === "ferramentas" && (
-              <div>
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Ferramentas e Tecnologias</h3>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    Stack tecnológico moderno utilizado no desenvolvimento do projeto
-                  </p>
-                </div>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  <Card className="text-center hover:shadow-lg transition-shadow">
-                    <CardContent className="p-6">
-                      <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full mx-auto mb-4 flex items-center justify-center">
-                        <FileText className="h-8 w-8 text-blue-600 dark:text-blue-400" />
-                      </div>
-                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2">TypeScript</h4>
-                      <p className="text-gray-600 dark:text-gray-300 text-sm">Linguagem fortemente tipada que adiciona tipos estáticos ao JavaScript.</p>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="text-center hover:shadow-lg transition-shadow">
-                    <CardContent className="p-6">
-                      <div className="w-16 h-16 bg-cyan-100 dark:bg-cyan-900 rounded-full mx-auto mb-4 flex items-center justify-center">
-                        <Zap className="h-8 w-8 text-cyan-600 dark:text-cyan-400" />
-                      </div>
-                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2">React</h4>
-                      <p className="text-gray-600 dark:text-gray-300 text-sm">Biblioteca JavaScript para construção de interfaces de usuário interativas.</p>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="text-center hover:shadow-lg transition-shadow">
-                    <CardContent className="p-6">
-                      <div className="w-16 h-16 bg-gray-100 dark:bg-gray-700 rounded-full mx-auto mb-4 flex items-center justify-center">
-                        <Settings className="h-8 w-8 text-gray-700 dark:text-gray-300" />
-                      </div>
-                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Next.js</h4>
-                      <p className="text-gray-600 dark:text-gray-300 text-sm">Framework React que oferece renderização híbrida e otimizações de performance.</p>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="text-center hover:shadow-lg transition-shadow">
-                    <CardContent className="p-6">
-                      <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full mx-auto mb-4 flex items-center justify-center">
-                        <Target className="h-8 w-8 text-blue-600 dark:text-blue-400" />
-                      </div>
-                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Tailwind CSS</h4>
-                      <p className="text-gray-600 dark:text-gray-300 text-sm">Framework CSS utilitário para design rápido e responsivo.</p>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="text-center hover:shadow-lg transition-shadow">
-                    <CardContent className="p-6">
-                      <div className="w-16 h-16 bg-green-100 dark:bg-green-900 rounded-full mx-auto mb-4 flex items-center justify-center">
-                        <Database className="h-8 w-8 text-green-600 dark:text-green-400" />
-                      </div>
-                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Express.js</h4>
-                      <p className="text-gray-600 dark:text-gray-300 text-sm">Framework web rápido e minimalista para Node.js.</p>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="text-center hover:shadow-lg transition-shadow">
-                    <CardContent className="p-6">
-                      <div className="w-16 h-16 bg-red-100 dark:bg-red-900 rounded-full mx-auto mb-4 flex items-center justify-center">
-                        <Brain className="h-8 w-8 text-red-600 dark:text-red-400" />
-                      </div>
-                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Google Gemini</h4>
-                      <p className="text-gray-600 dark:text-gray-300 text-sm">Modelo de IA avançado do Google para processamento de linguagem natural.</p>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="text-center hover:shadow-lg transition-shadow">
-                    <CardContent className="p-6">
-                      <div className="w-16 h-16 bg-purple-100 dark:bg-purple-900 rounded-full mx-auto mb-4 flex items-center justify-center">
-                        <Shield className="h-8 w-8 text-purple-600 dark:text-purple-400" />
-                      </div>
-                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Vercel AI SDK</h4>
-                      <p className="text-gray-600 dark:text-gray-300 text-sm">SDK para integração simplificada de modelos de IA em aplicações web.</p>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="text-center hover:shadow-lg transition-shadow">
-                    <CardContent className="p-6">
-                      <div className="w-16 h-16 bg-orange-100 dark:bg-orange-900 rounded-full mx-auto mb-4 flex items-center justify-center">
-                        <Database className="h-8 w-8 text-orange-600 dark:text-orange-400" />
-                      </div>
-                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Pinecone</h4>
-                      <p className="text-gray-600 dark:text-gray-300 text-sm">Banco de dados vetorial para busca semântica e similaridade.</p>
-                    </CardContent>
-                  </Card>
-
-                  <Card className="text-center hover:shadow-lg transition-shadow">
-                    <CardContent className="p-6">
-                      <div className="w-16 h-16 bg-yellow-100 dark:bg-yellow-900 rounded-full mx-auto mb-4 flex items-center justify-center">
-                        <Zap className="h-8 w-8 text-yellow-600 dark:text-yellow-400" />
-                      </div>
-                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Firebase</h4>
-                      <p className="text-gray-600 dark:text-gray-300 text-sm">Plataforma de desenvolvimento que oferece diversos serviços backend como serviço.</p>
-                    </CardContent>
-                  </Card>
-                </div>
-              </div>
-            )}
-
-            {activeTab === "financiadores" && (
-              <div>
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Financiadores e Parceiros</h3>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    Apoio institucional que torna nossa pesquisa possível
-                  </p>
-                </div>
-                <div className="flex justify-center">
-                  <Card className="text-center hover:shadow-lg transition-shadow max-w-md">
-                    <CardContent className="p-8">
-                      <div className="flex items-center justify-center gap-6 mb-6">
-                        <img 
-                          src="/logo-rnp.png" 
-                          alt="RNP Logo" 
-                          className="h-16 object-contain"
-                        />
-                        <img 
-                          src="/logo-hackers-do-bem.svg" 
-                          alt="Hackers do Bem Logo" 
-                          className="h-16 object-contain"
-                        />
-                      </div>
-                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2 text-lg">RNP</h4>
-                      <p className="text-gray-600 dark:text-gray-300 text-sm">
-                        Rede Nacional de Ensino e Pesquisa
-                      </p>
-                    </CardContent>
-                  </Card>
-                </div>
-              </div>
-            )}
-
-            {activeTab === "publicacoes" && (
-              <div>
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Publicações Científicas</h3>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    Artigos e pesquisas resultantes do projeto
-                  </p>
-                </div>
-                <div className="flex flex-col items-center justify-center py-12">
-                  <div className="w-24 h-24 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mb-6">
-                    <FileText className="h-12 w-12 text-gray-400 dark:text-gray-500" />
-                  </div>
-                  <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                    Em Desenvolvimento
-                  </h4>
-                  <p className="text-gray-600 dark:text-gray-300 text-center max-w-md">
-                    Nosso projeto está atualmente em fase de desenvolvimento e pesquisa. 
-                    As publicações científicas serão disponibilizadas conforme os resultados forem obtidos.
-                  </p>
-                  <div className="mt-6">
-                    <Badge className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">
-                      Pesquisa em Andamento
-                    </Badge>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 dark:bg-black text-white py-12 px-4 sm:px-6 lg:px-8">
+       {/* Footer */}
+      <footer className="bg-gray-900 dark:bg-black text-white py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
+          {/* Main Footer Content */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {/* Brand Section */}
+            <div className="col-span-1 sm:col-span-2 lg:col-span-1">
               <div className="flex items-center space-x-2 mb-4">
-                <Shield className="h-8 w-8 text-blue-400" />
-                <span className="text-xl font-bold">GT-LFI</span>
+                <div className="relative">
+                  <Shield className="h-8 w-8 text-blue-400 transition-transform duration-300 hover:scale-110" />
+                  <div className="absolute -inset-1 bg-blue-400/20 rounded-full opacity-0 hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
+                </div>
+                <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">GT-LFI</span>
               </div>
-              <p className="text-gray-400 text-sm">
+              <p className="text-gray-400 text-sm leading-relaxed max-w-md">
                 Transformando o aprendizado de cibersegurança através da inovação. 
                 Projeto de pesquisa desenvolvido em parceria com a RNP e Hackers do Bem.
               </p>
             </div>
 
-            <div className="text-right">
-              <h3 className="font-semibold mb-4">Contato</h3>
-              <div className="space-y-2 text-sm text-gray-400">
-                <div className="flex items-center justify-end space-x-2">
-                  <Mail className="h-4 w-4" />
-                  <span>gt.lif.rnp@gmail.com</span>
+            {/* Navigation Links */}
+            <div className="col-span-1">
+              <h3 className="font-semibold mb-4 text-white">Navegação</h3>
+              <div className="space-y-2">
+                {navigationItems.slice(0, 3).map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => scrollTo(item.id)}
+                    className="block text-sm text-gray-400 hover:text-blue-400 transition-colors duration-300 text-left"
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Contact Section */}
+            <div className="col-span-1">
+              <h3 className="font-semibold mb-4 text-white">Contato</h3>
+              <div className="space-y-3">
+                <div className="flex items-center space-x-2 text-sm text-gray-400 hover:text-blue-400 transition-colors duration-300">
+                  <Mail className="h-4 w-4 flex-shrink-0" />
+                  <a href="mailto:gt.lif.rnp@gmail.com" className="break-all">
+                    gt.lif.rnp@gmail.com
+                  </a>
+                </div>
+                <div className="flex items-center space-x-2 text-sm text-gray-400">
+                  <MapPin className="h-4 w-4 flex-shrink-0" />
+                  <span>Brasil</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
-            <p>&copy; {new Date().getFullYear()} GT-LFI - Learning From Incidents. Todos os direitos reservados.</p>
+          {/* Bottom Section */}
+          <div className="border-t border-gray-800 mt-8 pt-6 sm:pt-8">
+            <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+              <p className="text-xs sm:text-sm text-gray-400 text-center sm:text-left">
+                &copy; {new Date().getFullYear()} GT-LFI - Learning From Incidents. Todos os direitos reservados.
+              </p>
+              <div className="flex items-center space-x-4">
+                <button
+                  onClick={toggleDarkMode}
+                  className="p-2 rounded-lg bg-gray-800 hover:bg-gray-700 transition-all duration-300 transform hover:scale-105"
+                  aria-label="Toggle dark mode"
+                >
+                  {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+                </button>
+                <button
+                  onClick={() => scrollTo("inicio")}
+                  className="p-2 rounded-lg bg-blue-600 hover:bg-blue-700 transition-all duration-300 transform hover:scale-105"
+                  aria-label="Voltar ao topo"
+                >
+                  <ChevronUp className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
 
-      {/* Botão Voltar ao Topo */}
-      {showScrollTop && (
-        <button
-          onClick={() => scrollTo("inicio")}
-          className="fixed bottom-8 right-8 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg transition-all z-30"
-        >
-          <ChevronUp className="h-6 w-6" />
-        </button>
-      )}
+
     </div>
   )
 } 
