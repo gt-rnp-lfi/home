@@ -862,93 +862,93 @@ export default function GTLFIPage() {
                  </div>
                  
                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                   <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30">
-                     <CardContent className="p-8">
+                   <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 h-full flex flex-col">
+                     <CardContent className="p-8 flex flex-col h-full">
                        <div className="bg-gradient-to-r from-blue-500 to-indigo-500 rounded-2xl p-4 w-20 h-20 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                          <FileText className="h-10 w-10 text-white" />
                        </div>
                        <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-lg">TypeScript</h4>
-                       <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">Linguagem fortemente tipada que adiciona tipos estáticos ao JavaScript.</p>
+                       <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed flex-grow">Linguagem fortemente tipada que adiciona tipos estáticos ao JavaScript.</p>
                      </CardContent>
                    </Card>
 
-                   <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-cyan-50 to-cyan-100 dark:from-cyan-900/30 dark:to-cyan-800/30">
-                     <CardContent className="p-8">
+                   <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-cyan-50 to-cyan-100 dark:from-cyan-900/30 dark:to-cyan-800/30 h-full flex flex-col">
+                     <CardContent className="p-8 flex flex-col h-full">
                        <div className="bg-gradient-to-r from-cyan-500 to-blue-500 rounded-2xl p-4 w-20 h-20 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                          <Zap className="h-10 w-10 text-white" />
                        </div>
                        <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-lg">React</h4>
-                       <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">Biblioteca JavaScript para construção de interfaces de usuário interativas.</p>
+                       <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed flex-grow">Biblioteca JavaScript para construção de interfaces de usuário interativas.</p>
                      </CardContent>
                    </Card>
 
-                   <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700/30 dark:to-gray-600/30">
-                     <CardContent className="p-8">
+                   <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700/30 dark:to-gray-600/30 h-full flex flex-col">
+                     <CardContent className="p-8 flex flex-col h-full">
                        <div className="bg-gradient-to-r from-gray-600 to-gray-700 dark:from-gray-500 dark:to-gray-600 rounded-2xl p-4 w-20 h-20 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                          <Settings className="h-10 w-10 text-white" />
                        </div>
                        <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-lg">Next.js</h4>
-                       <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">Framework React que oferece renderização híbrida e otimizações de performance.</p>
+                       <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed flex-grow">Framework React que oferece renderização híbrida e otimizações de performance.</p>
                      </CardContent>
                    </Card>
 
-                   <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-teal-50 to-teal-100 dark:from-teal-900/30 dark:to-teal-800/30">
-                     <CardContent className="p-8">
+                   <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-teal-50 to-teal-100 dark:from-teal-900/30 dark:to-teal-800/30 h-full flex flex-col">
+                     <CardContent className="p-8 flex flex-col h-full">
                        <div className="bg-gradient-to-r from-teal-500 to-cyan-500 rounded-2xl p-4 w-20 h-20 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                          <Target className="h-10 w-10 text-white" />
                        </div>
                        <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-lg">Tailwind CSS</h4>
-                       <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">Framework CSS utilitário para design rápido e responsivo.</p>
+                       <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed flex-grow">Framework CSS utilitário para design rápido e responsivo.</p>
                      </CardContent>
                    </Card>
 
-                   <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/30">
-                     <CardContent className="p-8">
+                   <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/30 h-full flex flex-col">
+                     <CardContent className="p-8 flex flex-col h-full">
                        <div className="bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl p-4 w-20 h-20 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                          <Database className="h-10 w-10 text-white" />
                        </div>
                        <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-lg">Express.js</h4>
-                       <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">Framework web rápido e minimalista para Node.js.</p>
+                       <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed flex-grow">Framework web rápido e minimalista para Node.js.</p>
                      </CardContent>
                    </Card>
 
-                   <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/30 dark:to-red-800/30">
-                     <CardContent className="p-8">
+                   <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/30 dark:to-red-800/30 h-full flex flex-col">
+                     <CardContent className="p-8 flex flex-col h-full">
                        <div className="bg-gradient-to-r from-red-500 to-pink-500 rounded-2xl p-4 w-20 h-20 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                          <Brain className="h-10 w-10 text-white" />
                        </div>
                        <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-lg">Google Gemini</h4>
-                       <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">Modelo de IA avançado do Google para processamento de linguagem natural.</p>
+                       <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed flex-grow">Modelo de IA avançado do Google para processamento de linguagem natural.</p>
                      </CardContent>
                    </Card>
 
-                   <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/30">
-                     <CardContent className="p-8">
+                   <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/30 h-full flex flex-col">
+                     <CardContent className="p-8 flex flex-col h-full">
                        <div className="bg-gradient-to-r from-purple-500 to-violet-500 rounded-2xl p-4 w-20 h-20 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                          <Shield className="h-10 w-10 text-white" />
                        </div>
                        <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-lg">Vercel AI SDK</h4>
-                       <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">SDK para integração simplificada de modelos de IA em aplicações web.</p>
+                       <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed flex-grow">SDK para integração simplificada de modelos de IA em aplicações web.</p>
                      </CardContent>
                    </Card>
 
-                   <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/30">
-                     <CardContent className="p-8">
+                   <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/30 dark:to-orange-800/30 h-full flex flex-col">
+                     <CardContent className="p-8 flex flex-col h-full">
                        <div className="bg-gradient-to-r from-orange-500 to-yellow-500 rounded-2xl p-4 w-20 h-20 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                          <Database className="h-10 w-10 text-white" />
                        </div>
                        <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-lg">Pinecone</h4>
-                       <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">Banco de dados vetorial para busca semântica e similaridade.</p>
+                       <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed flex-grow">Banco de dados vetorial para busca semântica e similaridade.</p>
                      </CardContent>
                    </Card>
 
-                   <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-900/30 dark:to-yellow-800/30">
-                     <CardContent className="p-8">
+                   <Card className="text-center group hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-900/30 dark:to-yellow-800/30 h-full flex flex-col">
+                     <CardContent className="p-8 flex flex-col h-full">
                        <div className="bg-gradient-to-r from-yellow-500 to-orange-500 rounded-2xl p-4 w-20 h-20 mx-auto mb-6 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                          <Zap className="h-10 w-10 text-white" />
                        </div>
                        <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-lg">Firebase</h4>
-                       <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">Plataforma de desenvolvimento que oferece diversos serviços backend como serviço.</p>
+                       <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed flex-grow">Plataforma de desenvolvimento que oferece diversos serviços backend como serviço.</p>
                      </CardContent>
                    </Card>
                  </div>
@@ -976,14 +976,14 @@ export default function GTLFIPage() {
                        <div className="flex items-center justify-center gap-8 mb-8">
                          <div className="group-hover:scale-110 transition-transform duration-300">
                            <img 
-                             src="/logo-rnp.png" 
+                             src="/home/logo-rnp.png" 
                              alt="RNP Logo" 
                              className="h-20 object-contain filter drop-shadow-lg"
                            />
                          </div>
                          <div className="group-hover:scale-110 transition-transform duration-300">
                            <img 
-                             src="/logo-hackers-do-bem.svg" 
+                             src="/home/logo-hackers-do-bem.svg" 
                              alt="Hackers do Bem Logo" 
                              className="h-20 object-contain filter drop-shadow-lg"
                            />
@@ -1014,7 +1014,7 @@ export default function GTLFIPage() {
                    </h3>
                    <p className="text-lg text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
                      Artigos e pesquisas resultantes do projeto, contribuindo para o 
-                     <span className="font-semibold text-indigo-600 dark:text-indigo-400"> avanço científico</span> 
+                     <span className="font-semibold text-indigo-600 dark:text-indigo-400"> avanço científico </span> 
                      na área de cibersegurança.
                    </p>
                  </div>
@@ -1081,8 +1081,12 @@ export default function GTLFIPage() {
                <div className="animate-in fade-in slide-in-from-bottom duration-1000">
                  <Card className="text-center group hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 max-w-md bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-900/20 dark:to-purple-900/20 border-2 border-violet-200 dark:border-violet-700">
                    <CardContent className="p-8">
-                     <div className="bg-gradient-to-r from-violet-500 to-purple-500 rounded-full p-6 w-24 h-24 mx-auto mb-6 flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-500 group-hover:scale-110">
-                       <Award className="h-12 w-12 text-white" />
+                     <div className="relative w-24 h-24 mx-auto mb-6 overflow-hidden rounded-full shadow-xl group-hover:shadow-2xl transition-all duration-500 group-hover:scale-110 border-4 border-violet-200 dark:border-violet-600">
+                       <img 
+                         src="/home/avatars/avatar-miani.jpg" 
+                         alt="Dr. Rodrigo Sanches Miani"
+                         className="w-full h-full object-cover"
+                       />
                      </div>
                      <h4 className="font-bold text-gray-900 dark:text-white mb-2 text-xl">Dr. Rodrigo Sanches Miani</h4>
                      <p className="text-violet-600 dark:text-violet-400 text-lg font-semibold mb-3">Coordenador</p>
@@ -1104,54 +1108,60 @@ export default function GTLFIPage() {
                </span>
              </h3>
              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-               <div className="animate-in fade-in slide-in-from-left duration-1000">
-                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 h-80">
-                   <CardContent className="p-6 h-full flex flex-col justify-between">
-                     <div>
-                       <div className="bg-gradient-to-r from-purple-500 to-violet-500 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110">
-                         <Brain className="h-10 w-10 text-white" />
-                       </div>
-                       <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Dr. Silvio Ereno Quincozes</h4>
-                       <p className="text-purple-600 dark:text-purple-400 text-sm font-medium mb-2">Pesquisador</p>
-                       <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">
-                         Doutor em Ciência da Computação com foco em Cibersegurança. Professor na Universidade Federal do Pampa.
-                       </p>
+               <div className="animate-in fade-in slide-in-from-left duration-1000 h-full">
+                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 h-full flex flex-col">
+                   <CardContent className="p-6 flex flex-col h-full">
+                     <div className="relative w-20 h-20 mx-auto mb-4 overflow-hidden rounded-full shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110 border-4 border-purple-200 dark:border-purple-600">
+                       <img 
+                         src="/home/avatars/avatar-ereno.jpg" 
+                         alt="Dr. Silvio Ereno Quincozes"
+                         className="w-full h-full object-cover"
+                       />
                      </div>
+                     <h4 className="font-semibold text-gray-900 dark:text-white mb-2 text-base">Dr. Silvio Ereno Quincozes</h4>
+                     <p className="text-purple-600 dark:text-purple-400 text-sm font-medium mb-2">Pesquisador</p>
+                     <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed flex-grow">
+                       Doutor em Ciência da Computação com foco em Cibersegurança. Professor na Universidade Federal do Pampa.
+                     </p>
                    </CardContent>
                  </Card>
                </div>
 
-               <div className="animate-in fade-in slide-in-from-bottom duration-1000 delay-100">
-                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 h-80">
-                   <CardContent className="p-6 h-full flex flex-col justify-between">
-                     <div>
-                       <div className="bg-gradient-to-r from-green-500 to-emerald-500 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110">
-                         <Shield className="h-10 w-10 text-white" />
-                       </div>
-                       <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Dr. Diego Luis Kreutz</h4>
-                       <p className="text-green-600 dark:text-green-400 text-sm font-medium mb-2">Pesquisador</p>
-                       <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">
-                         Pesquisador em Cibersegurança e professor na Universidade Federal do Pampa.
-                       </p>
+               <div className="animate-in fade-in slide-in-from-bottom duration-1000 delay-100 h-full">
+                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 h-full flex flex-col">
+                   <CardContent className="p-6 flex flex-col h-full">
+                     <div className="relative w-20 h-20 mx-auto mb-4 overflow-hidden rounded-full shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110 border-4 border-green-200 dark:border-green-600">
+                       <img 
+                         src="/home/avatars/avatar-kreutz.webp" 
+                         alt="Dr. Diego Luis Kreutz"
+                         className="w-full h-full object-cover"
+                       />
                      </div>
+                     <h4 className="font-semibold text-gray-900 dark:text-white mb-2 text-base">Dr. Diego Luis Kreutz</h4>
+                     <p className="text-green-600 dark:text-green-400 text-sm font-medium mb-2">Pesquisador</p>
+                     <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed flex-grow">
+                       Pesquisador em Cibersegurança e professor na Universidade Federal do Pampa.
+                     </p>
                    </CardContent>
                  </Card>
                </div>
 
-               <div className="animate-in fade-in slide-in-from-bottom duration-1000 delay-200">
-                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 h-80">
-                   <CardContent className="p-6 h-full flex flex-col justify-between">
-                     <div>
-                       <div className="bg-gradient-to-r from-orange-500 to-red-500 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110">
-                         <Database className="h-10 w-10 text-white" />
-                       </div>
-                       <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Dr. Leandro Bertholdo</h4>
-                       <p className="text-orange-600 dark:text-orange-400 text-sm font-medium mb-2">Pesquisador</p>
-                       <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed mb-3">
-                         Doutor em redes com foco em segurança. Professor na Universidade Federal do Rio Grande do Sul.
-                       </p>
+               <div className="animate-in fade-in slide-in-from-bottom duration-1000 delay-200 h-full">
+                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 h-full flex flex-col">
+                   <CardContent className="p-6 flex flex-col h-full">
+                     <div className="relative w-20 h-20 mx-auto mb-4 overflow-hidden rounded-full shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110 border-4 border-orange-200 dark:border-orange-600">
+                       <img 
+                         src="/home/avatars/avatar-bertholdo.png" 
+                         alt="Dr. Leandro Bertholdo"
+                         className="w-full h-full object-cover"
+                       />
                      </div>
-                     <div className="mt-3">
+                     <h4 className="font-semibold text-gray-900 dark:text-white mb-2 text-base">Dr. Leandro Bertholdo</h4>
+                     <p className="text-orange-600 dark:text-orange-400 text-sm font-medium mb-2">Pesquisador</p>
+                     <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed mb-3 flex-grow">
+                       Doutor em redes com foco em segurança. Professor na Universidade Federal do Rio Grande do Sul.
+                     </p>
+                     <div className="mt-auto">
                        <Link href="https://www.linkedin.com/in/leandro-bertholdo-3379411/" target="_blank" 
                              className="text-orange-600 dark:text-orange-400 hover:text-orange-800 text-xs font-medium">
                          LinkedIn
@@ -1161,19 +1171,21 @@ export default function GTLFIPage() {
                  </Card>
                </div>
 
-               <div className="animate-in fade-in slide-in-from-right duration-1000 delay-300">
-                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-900/20 dark:to-indigo-800/20 h-80">
-                   <CardContent className="p-6 h-full flex flex-col justify-between">
-                     <div>
-                       <div className="bg-gradient-to-r from-indigo-500 to-blue-500 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110">
-                         <Users className="h-10 w-10 text-white" />
-                       </div>
-                       <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Dr. Rafael Dias Araújo</h4>
-                       <p className="text-indigo-600 dark:text-indigo-400 text-sm font-medium mb-2">Pesquisador</p>
-                       <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">
-                         Doutor em Ciência da Computação e pesquisador em Informática na Educação e Interação Humano-Computador. Professor na UFU.
-                       </p>
+               <div className="animate-in fade-in slide-in-from-right duration-1000 delay-300 h-full">
+                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-900/20 dark:to-indigo-800/20 h-full flex flex-col">
+                   <CardContent className="p-6 flex flex-col h-full">
+                     <div className="relative w-20 h-20 mx-auto mb-4 overflow-hidden rounded-full shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110 border-4 border-indigo-200 dark:border-indigo-600">
+                       <img 
+                         src="/home/avatars/avatar-araujo.jpg" 
+                         alt="Dr. Rafael Dias Araújo"
+                         className="w-full h-full object-cover"
+                       />
                      </div>
+                     <h4 className="font-semibold text-gray-900 dark:text-white mb-2 text-base">Dr. Rafael Dias Araújo</h4>
+                     <p className="text-indigo-600 dark:text-indigo-400 text-sm font-medium mb-2">Pesquisador</p>
+                     <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed flex-grow">
+                       Doutor em Ciência da Computação e pesquisador em Informática na Educação e Interação Humano-Computador. Professor na UFU.
+                     </p>
                    </CardContent>
                  </Card>
                </div>
@@ -1188,20 +1200,22 @@ export default function GTLFIPage() {
                </span>
              </h3>
              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-               <div className="animate-in fade-in slide-in-from-left duration-1000">
-                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-teal-50 to-teal-100 dark:from-teal-900/20 dark:to-teal-800/20 h-96">
-                   <CardContent className="p-6 h-full flex flex-col justify-between">
-                     <div>
-                       <div className="bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110">
-                         <Gamepad2 className="h-10 w-10 text-white" />
-                       </div>
-                       <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Felipe Homrich Scherer</h4>
-                       <p className="text-teal-600 dark:text-teal-400 text-sm font-medium mb-2">Pesquisador</p>
-                       <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed mb-3">
-                         Graduando de Engenharia de Software pela Universidade Federal do Pampa, com foco em pesquisas nas áreas de cibersegurança.
-                       </p>
+               <div className="animate-in fade-in slide-in-from-left duration-1000 h-full">
+                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-teal-50 to-teal-100 dark:from-teal-900/20 dark:to-teal-800/20 h-full flex flex-col">
+                   <CardContent className="p-6 flex flex-col h-full">
+                     <div className="relative w-20 h-20 mx-auto mb-4 overflow-hidden rounded-full shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110 border-4 border-teal-200 dark:border-teal-600">
+                       <img 
+                         src="/home/avatars/avatar-felipe-scherer.png" 
+                         alt="Felipe Homrich Scherer"
+                         className="w-full h-full object-cover"
+                       />
                      </div>
-                     <div className="flex justify-center space-x-3 text-xs">
+                     <h4 className="font-semibold text-gray-900 dark:text-white mb-2 text-base">Felipe Homrich Scherer</h4>
+                     <p className="text-teal-600 dark:text-teal-400 text-sm font-medium mb-2">Pesquisador</p>
+                     <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed mb-4 flex-grow">
+                       Graduando de Engenharia de Software pela Universidade Federal do Pampa, com foco em pesquisas nas áreas de cibersegurança.
+                     </p>
+                     <div className="flex justify-center space-x-3 text-xs mt-auto">
                        <Link href="https://www.linkedin.com/in/felipehscherer/" target="_blank" 
                              className="text-teal-600 dark:text-teal-400 hover:text-teal-800 font-medium">
                          LinkedIn
@@ -1215,20 +1229,22 @@ export default function GTLFIPage() {
                  </Card>
                </div>
 
-               <div className="animate-in fade-in slide-in-from-bottom duration-1000 delay-100">
-                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-cyan-50 to-cyan-100 dark:from-cyan-900/20 dark:to-cyan-800/20 h-96">
-                   <CardContent className="p-6 h-full flex flex-col justify-between">
-                     <div>
-                       <div className="bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110">
-                         <Settings className="h-10 w-10 text-white" />
-                       </div>
-                       <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Felipe Nestor Dresch</h4>
-                       <p className="text-cyan-600 dark:text-cyan-400 text-sm font-medium mb-2">Pesquisador</p>
-                       <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed mb-3">
-                         Graduando em Engenharia de Software pela Universidade Federal do Pampa e Técnico em Informática pelo IFRS.
-                       </p>
+               <div className="animate-in fade-in slide-in-from-bottom duration-1000 delay-100 h-full">
+                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-cyan-50 to-cyan-100 dark:from-cyan-900/20 dark:to-cyan-800/20 h-full flex flex-col">
+                   <CardContent className="p-6 flex flex-col h-full">
+                     <div className="relative w-20 h-20 mx-auto mb-4 overflow-hidden rounded-full shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110 border-4 border-cyan-200 dark:border-cyan-600">
+                       <img 
+                         src="/home/avatars/avatar-dresch.png" 
+                         alt="Felipe Nestor Dresch"
+                         className="w-full h-full object-cover"
+                       />
                      </div>
-                     <div className="flex justify-center text-xs">
+                     <h4 className="font-semibold text-gray-900 dark:text-white mb-2 text-base">Felipe Nestor Dresch</h4>
+                     <p className="text-cyan-600 dark:text-cyan-400 text-sm font-medium mb-2">Pesquisador</p>
+                     <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed mb-4 flex-grow">
+                       Graduando em Engenharia de Software pela Universidade Federal do Pampa e Técnico em Informática pelo IFRS.
+                     </p>
+                     <div className="flex justify-center text-xs mt-auto">
                        <Link href="https://www.linkedin.com/in/felipe-dresch-066046237/" target="_blank" 
                              className="text-cyan-600 dark:text-cyan-400 hover:text-cyan-800 font-medium">
                          LinkedIn
@@ -1238,37 +1254,41 @@ export default function GTLFIPage() {
                  </Card>
                </div>
 
-               <div className="animate-in fade-in slide-in-from-bottom duration-1000 delay-200">
-                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-pink-50 to-pink-100 dark:from-pink-900/20 dark:to-pink-800/20 h-96">
-                   <CardContent className="p-6 h-full flex flex-col justify-between">
-                     <div>
-                       <div className="bg-gradient-to-r from-pink-500 to-rose-500 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110">
-                         <BookOpen className="h-10 w-10 text-white" />
-                       </div>
-                       <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Me. Sebastião A. de Jesus F.</h4>
-                       <p className="text-pink-600 dark:text-pink-400 text-sm font-medium mb-2">Pesquisador</p>
-                       <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">
-                         Doutorando em Ciência da Computação e Técnico de Laboratório de Informática na Universidade Federal de Uberlândia.
-                       </p>
+               <div className="animate-in fade-in slide-in-from-bottom duration-1000 delay-200 h-full">
+                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-pink-50 to-pink-100 dark:from-pink-900/20 dark:to-pink-800/20 h-full flex flex-col">
+                   <CardContent className="p-6 flex flex-col h-full">
+                     <div className="relative w-20 h-20 mx-auto mb-4 overflow-hidden rounded-full shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110 border-4 border-pink-200 dark:border-pink-600">
+                       <img 
+                         src="/home/avatars/avatar-filho.jpg" 
+                         alt="Me. Sebastião A. de Jesus F."
+                         className="w-full h-full object-cover"
+                       />
                      </div>
+                     <h4 className="font-semibold text-gray-900 dark:text-white mb-2 text-base">Me. Sebastião A. de Jesus F.</h4>
+                     <p className="text-pink-600 dark:text-pink-400 text-sm font-medium mb-2">Pesquisador</p>
+                     <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed flex-grow">
+                       Doutorando em Ciência da Computação e Técnico de Laboratório de Informática na Universidade Federal de Uberlândia.
+                     </p>
                    </CardContent>
                  </Card>
                </div>
 
-               <div className="animate-in fade-in slide-in-from-bottom duration-1000 delay-300">
-                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-900/20 dark:to-yellow-800/20 h-96">
-                   <CardContent className="p-6 h-full flex flex-col justify-between">
-                     <div>
-                       <div className="bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110">
-                         <BarChart3 className="h-10 w-10 text-white" />
-                       </div>
-                       <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Alvaro Santana</h4>
-                       <p className="text-yellow-600 dark:text-yellow-400 text-sm font-medium mb-2">Pesquisador</p>
-                       <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed mb-3">
-                         Mestrando em Ciência da Computação pela Universidade Federal de Uberlândia e Consultor de Soluções na empresa Accenture.
-                       </p>
+               <div className="animate-in fade-in slide-in-from-bottom duration-1000 delay-300 h-full">
+                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-900/20 dark:to-yellow-800/20 h-full flex flex-col">
+                   <CardContent className="p-6 flex flex-col h-full">
+                     <div className="relative w-20 h-20 mx-auto mb-4 overflow-hidden rounded-full shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110 border-4 border-yellow-200 dark:border-yellow-600">
+                       <img 
+                         src="/home/avatars/avatar-santana.jpg" 
+                         alt="Alvaro Santana"
+                         className="w-full h-full object-cover"
+                       />
                      </div>
-                     <div className="flex justify-center text-xs">
+                     <h4 className="font-semibold text-gray-900 dark:text-white mb-2 text-base">Alvaro Santana</h4>
+                     <p className="text-yellow-600 dark:text-yellow-400 text-sm font-medium mb-2">Pesquisador</p>
+                     <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed mb-4 flex-grow">
+                       Mestrando em Ciência da Computação pela Universidade Federal de Uberlândia e Consultor de Soluções na empresa Accenture.
+                     </p>
+                     <div className="flex justify-center text-xs mt-auto">
                        <Link href="https://www.linkedin.com/in/alvaro-s-santos/" target="_blank" 
                              className="text-yellow-600 dark:text-yellow-400 hover:text-yellow-800 font-medium">
                          LinkedIn
@@ -1278,36 +1298,40 @@ export default function GTLFIPage() {
                  </Card>
                </div>
 
-               <div className="animate-in fade-in slide-in-from-bottom duration-1000 delay-400">
-                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/20 h-96">
-                   <CardContent className="p-6 h-full flex flex-col justify-between">
-                     <div>
-                       <div className="bg-gradient-to-r from-emerald-500 to-green-500 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110">
-                         <Target className="h-10 w-10 text-white" />
-                       </div>
-                       <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Carolina Bandel</h4>
-                       <p className="text-emerald-600 dark:text-emerald-400 text-sm font-medium mb-2">Pesquisador</p>
-                       <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">
-                         Graduanda em Gestão de Tecnologia da Informação pelo Senac SP.
-                       </p>
+               <div className="animate-in fade-in slide-in-from-bottom duration-1000 delay-400 h-full">
+                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/20 h-full flex flex-col">
+                   <CardContent className="p-6 flex flex-col h-full">
+                     <div className="relative w-20 h-20 mx-auto mb-4 overflow-hidden rounded-full shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110 border-4 border-emerald-200 dark:border-emerald-600">
+                       <img 
+                         src="/home/avatars/avatar-bandel.jpeg" 
+                         alt="Carolina Bandel"
+                         className="w-full h-full object-cover"
+                       />
                      </div>
+                     <h4 className="font-semibold text-gray-900 dark:text-white mb-2 text-base">Carolina Bandel</h4>
+                     <p className="text-emerald-600 dark:text-emerald-400 text-sm font-medium mb-2">Pesquisador</p>
+                     <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed flex-grow">
+                       Graduanda em Gestão de Tecnologia da Informação pelo Senac SP.
+                     </p>
                    </CardContent>
                  </Card>
                </div>
 
-               <div className="animate-in fade-in slide-in-from-right duration-1000 delay-500">
-                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900/20 dark:to-slate-800/20 h-96">
-                   <CardContent className="p-6 h-full flex flex-col justify-between">
-                     <div>
-                       <div className="bg-gradient-to-r from-slate-500 to-gray-500 rounded-full p-4 w-20 h-20 mx-auto mb-4 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110">
-                         <Zap className="h-10 w-10 text-white" />
-                       </div>
-                       <h4 className="font-semibold text-gray-900 dark:text-white mb-2">João Pedro Ramires Esteves</h4>
-                       <p className="text-slate-600 dark:text-slate-400 text-sm font-medium mb-2">Pesquisador</p>
-                       <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">
-                         Graduando em Ciências da Computação pela Universidade Federal de Uberlândia.
-                       </p>
+               <div className="animate-in fade-in slide-in-from-right duration-1000 delay-500 h-full">
+                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900/20 dark:to-slate-800/20 h-full flex flex-col">
+                   <CardContent className="p-6 flex flex-col h-full">
+                     <div className="relative w-20 h-20 mx-auto mb-4 overflow-hidden rounded-full shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110 border-4 border-slate-200 dark:border-slate-600">
+                       <img 
+                         src="/home/avatars/avatar-esteves.jpg" 
+                         alt="João Pedro Ramires Esteves"
+                         className="w-full h-full object-cover"
+                       />
                      </div>
+                     <h4 className="font-semibold text-gray-900 dark:text-white mb-2 text-base">João Pedro Ramires Esteves</h4>
+                     <p className="text-slate-600 dark:text-slate-400 text-sm font-medium mb-2">Pesquisador</p>
+                     <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed flex-grow">
+                       Graduando em Ciências da Computação pela Universidade Federal de Uberlândia.
+                     </p>
                    </CardContent>
                  </Card>
                </div>
