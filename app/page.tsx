@@ -1544,8 +1544,8 @@ export default function GTLFIPage() {
                <div className="space-y-3">
                  <div className="flex items-center space-x-2 text-sm text-gray-400 hover:text-blue-400 transition-colors duration-300">
                    <Mail className="h-4 w-4 flex-shrink-0" />
-                   <a href="mailto:gt.lif.rnp@gmail.com" className="break-all">
-                     gt.lif.rnp@gmail.com
+                   <a href="mailto:gt.lfi.rnp@gmail.com" className="break-all">
+                     gt.lfi.rnp@gmail.com
                    </a>
                  </div>
                  <div className="flex items-center space-x-2 text-sm text-gray-400">
