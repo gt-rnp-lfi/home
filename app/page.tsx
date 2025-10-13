@@ -118,6 +118,7 @@ export default function GTLFIPage() {
     { id: "proposta-aprendizado", label: "Nossa Proposta", href: "#proposta-aprendizado" },
     { id: "produtos", label: "Produtos", href: "#produtos" },
     { id: "ferramentas", label: "Ferramentas", href: "#ferramentas" },
+    { id: "publicacoes", label: "Publicações", href: "#publicacoes" },
     { id: "tecnologias", label: "Tecnologias", href: "#tecnologias" },
     { id: "equipe", label: "Equipe", href: "#equipe" },
     { id: "financiadores", label: "Financiadores", href: "#financiadores" },
@@ -754,10 +755,12 @@ export default function GTLFIPage() {
                   <div className="flex flex-col sm:flex-row gap-3 mt-auto">
                     <Button 
                       className="flex-1 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white transition-all duration-300"
-                      disabled
+                      asChild
                     >
-                      <Sparkles className="h-4 w-4 mr-2" />
-                      Em Desenvolvimento
+                      <Link href="https://gt-lfi-dev-hackersdb.unihacker.club/" target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        Acessar Plataforma
+                      </Link>
                     </Button>
                   </div>
                 </CardContent>
@@ -824,10 +827,12 @@ export default function GTLFIPage() {
                   <div className="flex flex-col sm:flex-row gap-3 mt-auto">
                     <Button 
                       className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white transition-all duration-300"
-                      disabled
+                      asChild
                     >
-                      <Brain className="h-4 w-4 mr-2" />
-                      Em Desenvolvimento
+                      <Link href="https://gt-lfi-dev-pop.unihacker.club/tickets" target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        Acessar Plataforma
+                      </Link>
                     </Button>
                   </div>
                 </CardContent>
@@ -911,34 +916,27 @@ export default function GTLFIPage() {
 
                   <div className="flex flex-col sm:flex-row gap-3">
                     <Button 
-                      variant="outline" 
-                      className="flex-1 border-2 border-blue-300 text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-all duration-300" 
-                      disabled
+                      className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white transition-all duration-300"
+                      asChild
                     >
-                      <Github className="h-4 w-4 mr-2" />
-                      Código (Em breve)
-                    </Button>
-                    <Button 
-                      variant="outline" 
-                      className="flex-1 border-2 border-indigo-300 text-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 transition-all duration-300" 
-                      disabled
-                    >
-                      <FileText className="h-4 w-4 mr-2" />
-                      Artigo (Em processo)
+                      <Link href="https://gt-lfi-dev-anon.unihacker.club/" target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        Acessar Ferramenta
+                      </Link>
                     </Button>
                   </div>
                 </CardContent>
               </Card>
             </div>
 
-            {/* Sentinel-LFI */}
+            {/* AutoClass-LFI */}
             <div className="animate-in fade-in slide-in-from-right duration-1000 delay-200">
               <Card className="group hover:shadow-2xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-4 border-2 hover:border-purple-300 dark:hover:border-purple-600 bg-gradient-to-br from-purple-50/50 to-white dark:from-purple-900/20 dark:to-gray-800">
                 <CardHeader className="text-center pb-6">
                   <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-3xl p-6 w-24 h-24 mx-auto mb-6 flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-6">
                     <Brain className="h-12 w-12 text-white" />
                   </div>
-                  <CardTitle className="text-2xl text-gray-900 dark:text-white mb-2">Sentinel-LFI</CardTitle>
+                  <CardTitle className="text-2xl text-gray-900 dark:text-white mb-2">AutoClass-LFI</CardTitle>
                   <CardDescription className="text-lg text-gray-600 dark:text-gray-300">
                     Motor de IA para Gestão de Incidentes
                   </CardDescription>
@@ -984,21 +982,183 @@ export default function GTLFIPage() {
 
                   <div className="flex flex-col sm:flex-row gap-3">
                     <Button 
-                      variant="outline" 
-                      className="flex-1 border-2 border-purple-300 text-purple-600 hover:bg-purple-50 dark:hover:bg-purple-900/30 transition-all duration-300" 
-                      disabled
+                      className="flex-1 bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-700 hover:to-violet-700 text-white transition-all duration-300"
+                      asChild
                     >
-                      <Github className="h-4 w-4 mr-2" />
-                      Código (Em breve)
+                      <Link href="https://gt-lfi-dev-autoclass.unihacker.club/home" target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="h-4 w-4 mr-2" />
+                        Acessar Ferramenta
+                      </Link>
                     </Button>
-                    <Button 
-                      variant="outline" 
-                      className="flex-1 border-2 border-violet-300 text-violet-600 hover:bg-violet-50 dark:hover:bg-violet-900/30 transition-all duration-300" 
-                      disabled
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Seção de Artigos, Premiações e Participações */}
+      <section id="publicacoes" className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="animate-in fade-in slide-in-from-bottom duration-1000">
+              <Badge className="bg-gradient-to-r from-amber-500 to-orange-500 text-white mb-6 px-4 py-2">
+                Reconhecimento Acadêmico
+              </Badge>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                <span className="bg-gradient-to-r from-gray-900 to-amber-800 dark:from-white dark:to-amber-200 bg-clip-text text-transparent">
+                  Artigos, Premiações e Participações
+                </span>
+              </h2>
+              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                Reconhecimento nacional e internacional do trabalho desenvolvido pelo GT-LFI
+              </p>
+            </div>
+          </div>
+
+          <div className="grid lg:grid-cols-3 gap-8 mb-16">
+            {/* Artigos Publicados */}
+            <div className="animate-in fade-in slide-in-from-left duration-1000">
+              <Card className="h-full bg-gradient-to-br from-blue-50/50 to-white dark:from-blue-900/20 dark:to-gray-800 border-blue-200 dark:border-blue-700">
+                <CardHeader className="text-center pb-4">
+                  <div className="bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center shadow-lg">
+                    <FileText className="h-8 w-8 text-white" />
+                  </div>
+                  <CardTitle className="text-xl text-gray-900 dark:text-white">Artigos Publicados</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="p-4 bg-white dark:bg-gray-900 rounded-lg border border-blue-200 dark:border-blue-800 hover:shadow-md transition-shadow">
+                    <Link 
+                      href="https://sol.sbc.org.br/index.php/sbseg/article/view/36614" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="block space-y-2 group"
                     >
-                      <FileText className="h-4 w-4 mr-2" />
-                      Artigo (Em processo)
-                    </Button>
+                      <h4 className="font-semibold text-gray-900 dark:text-white text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                        Anonimização de Incidentes de Segurança com Reidentificação Controlada
+                      </h4>
+                      <div className="flex items-center space-x-2 text-xs text-gray-600 dark:text-gray-400">
+                        <Badge variant="outline" className="text-xs">SBSeg 2025</Badge>
+                        <span>•</span>
+                        <span>Nacional</span>
+                      </div>
+                      <div className="flex items-center text-blue-600 dark:text-blue-400 text-xs">
+                        <ExternalLink className="h-3 w-3 mr-1" />
+                        Ver artigo
+                      </div>
+                    </Link>
+                  </div>
+
+                  <div className="p-4 bg-white dark:bg-gray-900 rounded-lg border border-blue-200 dark:border-blue-800 hover:shadow-md transition-shadow">
+                    <Link 
+                      href="https://sol.sbc.org.br/index.php/sbseg/article/view/36624" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="block space-y-2 group"
+                    >
+                      <h4 className="font-semibold text-gray-900 dark:text-white text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                        Categorização de Incidentes de Segurança utilizando Engenharia de Prompts em LLMs
+                      </h4>
+                      <div className="flex items-center space-x-2 text-xs text-gray-600 dark:text-gray-400">
+                        <Badge variant="outline" className="text-xs">SBSeg 2025</Badge>
+                        <span>•</span>
+                        <span>Nacional</span>
+                      </div>
+                      <div className="flex items-center text-blue-600 dark:text-blue-400 text-xs">
+                        <ExternalLink className="h-3 w-3 mr-1" />
+                        Ver artigo
+                      </div>
+                    </Link>
+                  </div>
+
+                  <div className="p-4 bg-white dark:bg-gray-900 rounded-lg border border-blue-200 dark:border-blue-800">
+                    <div className="space-y-2">
+                      <h4 className="font-semibold text-gray-900 dark:text-white text-sm">
+                        Applying LLMs to the Classification of Cybersecurity Incident Tickets in a Few-Shot Scenario
+                      </h4>
+                      <div className="flex items-center space-x-2 text-xs text-gray-600 dark:text-gray-400">
+                        <Badge variant="outline" className="text-xs">ICMLA 2025</Badge>
+                        <span>•</span>
+                        <span>Internacional</span>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Premiações */}
+            <div className="animate-in fade-in slide-in-from-bottom duration-1000 delay-100">
+              <Card className="h-full bg-gradient-to-br from-amber-50/50 to-white dark:from-amber-900/20 dark:to-gray-800 border-amber-200 dark:border-amber-700">
+                <CardHeader className="text-center pb-4">
+                  <div className="bg-gradient-to-br from-amber-500 to-orange-600 rounded-2xl p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center shadow-lg">
+                    <Award className="h-8 w-8 text-white" />
+                  </div>
+                  <CardTitle className="text-xl text-gray-900 dark:text-white">Premiações</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="p-6 bg-white dark:bg-gray-900 rounded-lg border-2 border-amber-300 dark:border-amber-700 text-center">
+                    <div className="bg-gradient-to-r from-amber-500 to-orange-500 rounded-full p-3 w-14 h-14 mx-auto mb-4 flex items-center justify-center">
+                      <Star className="h-7 w-7 text-white" />
+                    </div>
+                    <h4 className="font-bold text-gray-900 dark:text-white text-lg mb-2">
+                      Artefato Destaque
+                    </h4>
+                    <p className="text-gray-700 dark:text-gray-300 font-semibold mb-1">
+                      Anon-LFI
+                    </p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
+                      SBSeg 2025
+                    </p>
+                    <Badge className="bg-gradient-to-r from-amber-500 to-orange-500 text-white">
+                      Destaque Nacional
+                    </Badge>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Participações */}
+            <div className="animate-in fade-in slide-in-from-right duration-1000 delay-200">
+              <Card className="h-full bg-gradient-to-br from-green-50/50 to-white dark:from-green-900/20 dark:to-gray-800 border-green-200 dark:border-green-700">
+                <CardHeader className="text-center pb-4">
+                  <div className="bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center shadow-lg">
+                    <Users className="h-8 w-8 text-white" />
+                  </div>
+                  <CardTitle className="text-xl text-gray-900 dark:text-white">Participações</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="p-4 bg-white dark:bg-gray-900 rounded-lg border border-green-200 dark:border-green-800">
+                    <div className="flex items-start space-x-3">
+                      <div className="bg-green-100 dark:bg-green-900 rounded-full p-1.5 mt-0.5">
+                        <CheckCircle className="w-4 h-4 text-green-600 dark:text-green-400" />
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-900 dark:text-white font-medium">
+                          Pitch Institucional GT-LFI
+                        </p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                          Comitê Técnico de Cibersegurança da RNP
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-4 bg-white dark:bg-gray-900 rounded-lg border border-green-200 dark:border-green-800">
+                    <div className="flex items-start space-x-3">
+                      <div className="bg-green-100 dark:bg-green-900 rounded-full p-1.5 mt-0.5">
+                        <CheckCircle className="w-4 h-4 text-green-600 dark:text-green-400" />
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-900 dark:text-white font-medium">
+                          III Workshop sobre Formação em Cibersegurança
+                        </p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
+                          Programa Hackers do Bem
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
