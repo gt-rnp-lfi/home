@@ -128,6 +128,7 @@ export default function GTLFIPage() {
     { id: "proposta-aprendizado", label: "Nossa Proposta", href: "#proposta-aprendizado" },
     { id: "produtos", label: "Produtos", href: "#produtos" },
     { id: "ferramentas", label: "Ferramentas", href: "#ferramentas" },
+    { id: "avaliacao", label: "Avaliação", href: "#avaliacao" },
     { id: "publicacoes", label: "Publicações", href: "#publicacoes" },
     { id: "equipe", label: "Equipe", href: "#equipe" },
     { id: "financiadores", label: "Financiadores", href: "#financiadores" },
@@ -148,28 +149,27 @@ export default function GTLFIPage() {
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-1">
+            <div className="hidden md:flex items-center gap-0.5">
               {navigationItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollTo(item.id)}
-                  className={`px-3 lg:px-4 py-2 rounded-lg text-xs lg:text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
+                  className={`px-2 xl:px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-300 hover:scale-105 whitespace-nowrap ${
                     activeSection === item.id
                       ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-lg shadow-blue-500/25"
                       : "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30"
                   }`}
                 >
-                  <span className="hidden lg:inline">{item.label}</span>
-                  <span className="lg:hidden">{item.label.split(' ')[0]}</span>
+                  {item.label}
                 </button>
               ))}
               <Button 
                 variant="outline" 
                 size="sm"
-                className="ml-2 lg:ml-4 border-blue-200 hover:border-blue-300 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-all duration-300 transform hover:scale-105 text-xs lg:text-sm"
+                className="ml-2 border-blue-200 hover:border-blue-300 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-all duration-300 hover:scale-105 text-xs px-2 xl:px-3"
               >
-                <span className="hidden lg:inline">Contato</span>
-                <Mail className="h-4 w-4 lg:hidden" />
+                <span className="hidden xl:inline">Contato</span>
+                <Mail className="h-3.5 w-3.5 xl:hidden" />
               </Button>
               <button 
                 onClick={toggleDarkMode} 
@@ -290,6 +290,14 @@ export default function GTLFIPage() {
                 onClick={() => scrollTo("produtos")}
               >
                 Ver Produtos
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-2 border-purple-300 dark:border-purple-600 text-purple-600 dark:text-purple-400 px-8 py-4 text-lg font-medium hover:bg-purple-50 dark:hover:bg-purple-900/30 transition-all duration-300 transform hover:scale-105"
+                onClick={() => scrollTo("avaliacao")}
+              >
+                O que acharam de nós
               </Button>
             </div>
           </div>
