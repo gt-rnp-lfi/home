@@ -139,100 +139,89 @@ export default function GTLFIPage() {
       {/* Navbar */}
       <nav className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg border-b border-gray-200/50 dark:border-gray-700/50 sticky top-0 z-50 transition-all duration-300 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-2 group">
+          {/* Linha superior: logo centralizado + toggle */}
+          <div className="relative flex justify-center items-center h-14 border-b border-gray-100/80 dark:border-gray-700/40">
+            {/* Logo centralizado */}
+            <button onClick={() => scrollTo("inicio")} className="flex items-center space-x-2.5 group">
               <div className="relative">
                 <Shield className="h-8 w-8 text-blue-600 dark:text-blue-400 transition-transform duration-300 group-hover:scale-110" />
                 <div className="absolute -inset-1 bg-blue-600/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
               </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">GT-LFI</span>
-            </div>
+              <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">GT-LFI</span>
+              <span className="hidden sm:block text-xs text-gray-400 dark:text-gray-500 font-normal">Learning From Incidents</span>
+            </button>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-0.5">
+            {/* Toggle de dark mode — fixo à direita */}
+            <div className="absolute right-0 flex items-center gap-1">
+              <button
+                onClick={toggleDarkMode}
+                className="hidden md:flex p-2 rounded-lg transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800 transform hover:scale-110"
+                aria-label="Toggle dark mode"
+              >
+                {isDark ? <Sun className="h-5 w-5 text-yellow-500" /> : <Moon className="h-5 w-5 text-gray-600" />}
+              </button>
+
+              {/* Mobile: dark mode + hamburger */}
+              <div className="md:hidden flex items-center space-x-1">
+                <button
+                  onClick={toggleDarkMode}
+                  className="p-2 rounded-lg transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                  aria-label="Toggle dark mode"
+                >
+                  {isDark ? <Sun className="h-5 w-5 text-yellow-500" /> : <Moon className="h-5 w-5 text-gray-600 dark:text-gray-300" />}
+                </button>
+                <button
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  className="p-2 rounded-lg transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                  aria-label="Toggle mobile menu"
+                >
+                  {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Linha inferior: itens de navegação — apenas desktop */}
+          <div className="hidden md:flex justify-center items-center gap-1 h-11">
+            {navigationItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollTo(item.id)}
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 hover:scale-105 whitespace-nowrap ${
+                  activeSection === item.id
+                    ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-md shadow-blue-500/20"
+                    : "text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30"
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Mobile menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden py-3 px-4 bg-white/98 dark:bg-gray-900/98 backdrop-blur-lg animate-in slide-in-from-top duration-300 border-t border-gray-200/50 dark:border-gray-700/50">
+            <div className="flex flex-col space-y-1">
               {navigationItems.map((item) => (
                 <button
                   key={item.id}
-                  onClick={() => scrollTo(item.id)}
-                  className={`px-2 xl:px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-300 hover:scale-105 whitespace-nowrap ${
+                  onClick={() => {
+                    scrollTo(item.id)
+                    setMobileMenuOpen(false)
+                  }}
+                  className={`px-4 py-2.5 text-left rounded-lg text-sm font-medium transition-all duration-300 ${
                     activeSection === item.id
-                      ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-lg shadow-blue-500/25"
+                      ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-md"
                       : "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30"
                   }`}
                 >
                   {item.label}
                 </button>
               ))}
-              <Button 
-                variant="outline" 
-                size="sm"
-                className="ml-2 border-blue-200 hover:border-blue-300 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-all duration-300 hover:scale-105 text-xs px-2 xl:px-3"
-              >
-                <span className="hidden xl:inline">Contato</span>
-                <Mail className="h-3.5 w-3.5 xl:hidden" />
-              </Button>
-              <button 
-                onClick={toggleDarkMode} 
-                className="ml-1 lg:ml-2 p-2 rounded-lg transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800 transform hover:scale-110"
-                aria-label="Toggle dark mode"
-              >
-                {isDark ? <Sun className="h-4 w-4 lg:h-5 lg:w-5" /> : <Moon className="h-4 w-4 lg:h-5 lg:w-5" />}
-              </button>
-            </div>
-
-            {/* Mobile menu button */}
-            <div className="md:hidden flex items-center space-x-2">
-              <button 
-                onClick={toggleDarkMode} 
-                className="p-2 rounded-lg transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                aria-label="Toggle dark mode"
-              >
-                {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-              </button>
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="p-2 rounded-lg transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                aria-label="Toggle mobile menu"
-              >
-                {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </button>
             </div>
           </div>
-
-          {/* Mobile menu */}
-          {mobileMenuOpen && (
-            <div className="md:hidden py-4 bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg animate-in slide-in-from-top duration-300 border-t border-gray-200/50 dark:border-gray-700/50">
-              <div className="flex flex-col space-y-3">
-                {navigationItems.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => {
-                      scrollTo(item.id)
-                      setMobileMenuOpen(false)
-                    }}
-                    className={`px-4 py-3 text-left rounded-lg text-sm font-medium transition-all duration-300 ${
-                      activeSection === item.id
-                        ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-lg"
-                        : "text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30"
-                    }`}
-                  >
-                    {item.label}
-                  </button>
-                ))}
-                <div className="pt-3 border-t border-gray-200 dark:border-gray-700">
-                  <Button 
-                    variant="outline" 
-                    className="w-full justify-center border-blue-200 hover:border-blue-300 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-all duration-300"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    <Mail className="h-4 w-4 mr-2" />
-                    Contato
-                  </Button>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
+        )}
       </nav>
 
       {/* Hero Section - Mais alta e impactante */}
