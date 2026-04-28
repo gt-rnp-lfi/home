@@ -26,6 +26,8 @@ import {
   Mail,
   MapPin,
   ChevronUp,
+  ChevronLeft,
+  ChevronRight,
   Menu,
   X,
   Moon,
@@ -34,6 +36,10 @@ import {
   CheckCircle,
   Star,
   Sparkles,
+  MessageSquare,
+  ThumbsUp,
+  Bug,
+  ClipboardList,
 } from "lucide-react"
 import Link from "next/link"
 
@@ -111,6 +117,10 @@ export default function GTLFIPage() {
   const scrollTo = useScrollTo()
   const { isDark, toggleDarkMode } = useDarkMode()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [avaliacaoSlide, setAvaliacaoSlide] = useState(0)
+  const avaliacaoTotalSlides = 3
+  const prevSlide = () => setAvaliacaoSlide((s) => (s - 1 + avaliacaoTotalSlides) % avaliacaoTotalSlides)
+  const nextSlide = () => setAvaliacaoSlide((s) => (s + 1) % avaliacaoTotalSlides)
 
   const navigationItems = [
     { id: "inicio", label: "Início", href: "#inicio" },
@@ -992,6 +1002,281 @@ export default function GTLFIPage() {
                   </div>
                 </CardContent>
               </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Seção de Avaliação pelos Alunos */}
+      <section id="avaliacao" className="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-indigo-50 via-purple-50 to-white dark:from-gray-900 dark:via-indigo-900/20 dark:to-gray-900">
+        <div className="max-w-5xl mx-auto">
+
+          {/* Chamada de atenção */}
+          <div className="text-center mb-14 animate-in fade-in slide-in-from-bottom duration-1000">
+            <div className="inline-flex items-center justify-center bg-gradient-to-r from-purple-600 to-indigo-600 rounded-2xl px-6 py-3 mb-6 shadow-lg shadow-purple-500/30">
+              <span className="text-white font-bold text-lg tracking-wide">Veja o que acharam de nós</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-5">
+              <span className="bg-gradient-to-r from-purple-700 to-indigo-700 dark:from-purple-300 dark:to-indigo-300 bg-clip-text text-transparent">
+                Avaliação das Ferramentas
+              </span>
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              Confira abaixo um <span className="font-semibold text-purple-600 dark:text-purple-400">resumo completo</span> da avaliação das nossas ferramentas 
+              realizada pelos alunos do <span className="font-semibold text-indigo-600 dark:text-indigo-400">Hackers do Bem</span> — incluindo bugs encontrados, 
+              relatos e as impressões gerais sobre o sistema.
+            </p>
+          </div>
+
+          {/* Carrossel */}
+          <div className="relative">
+            {/* Indicador de slides */}
+            <div className="flex justify-center gap-2 mb-6">
+              {[0, 1, 2].map((i) => (
+                <button
+                  key={i}
+                  onClick={() => setAvaliacaoSlide(i)}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    avaliacaoSlide === i
+                      ? "w-8 bg-purple-600 dark:bg-purple-400"
+                      : "w-2 bg-gray-300 dark:bg-gray-600 hover:bg-purple-400"
+                  }`}
+                  aria-label={`Slide ${i + 1}`}
+                />
+              ))}
+            </div>
+
+            {/* Labels dos slides */}
+            <div className="flex justify-center gap-4 mb-8 flex-wrap">
+              {[
+                { idx: 0, icon: <ClipboardList className="h-4 w-4" />, label: "Resumo Geral" },
+                { idx: 1, icon: <Bug className="h-4 w-4" />, label: "Bugs Reportados" },
+                { idx: 2, icon: <MessageSquare className="h-4 w-4" />, label: "Relatos dos Alunos" },
+              ].map(({ idx, icon, label }) => (
+                <button
+                  key={idx}
+                  onClick={() => setAvaliacaoSlide(idx)}
+                  className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                    avaliacaoSlide === idx
+                      ? "bg-purple-600 text-white shadow-md shadow-purple-500/30"
+                      : "bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-gray-700 hover:border-purple-400 hover:text-purple-600"
+                  }`}
+                >
+                  {icon}
+                  {label}
+                </button>
+              ))}
+            </div>
+
+            {/* Conteúdo do carrossel */}
+            <div className="relative overflow-hidden">
+
+              {/* Slide 0 — Resumo Geral */}
+              <div className={`transition-all duration-500 ${avaliacaoSlide === 0 ? "block" : "hidden"}`}>
+                <div className="bg-white dark:bg-gray-800 rounded-3xl border border-purple-100 dark:border-purple-900/50 shadow-xl p-8">
+                  <div className="flex items-center gap-3 mb-7">
+                    <div className="bg-gradient-to-br from-purple-500 to-indigo-600 rounded-2xl p-3">
+                      <ClipboardList className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white">Resumo da Avaliação</h3>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">Baseado em 42 respostas — Turma HdB 2025.1</p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-5 text-gray-700 dark:text-gray-300 leading-relaxed">
+                    <p>
+                      Ao longo do semestre, os alunos do Hackers do Bem utilizaram as ferramentas Anon-LFI e Class-LFI como parte das atividades práticas do curso. Ao final do período, 42 alunos responderam a um formulário de avaliação aberto, com perguntas sobre usabilidade, qualidade do conteúdo e experiência geral de uso.
+                    </p>
+                    <p>
+                      A receptividade foi, de modo geral, bastante positiva. A maioria dos alunos destacou que as ferramentas trouxeram uma experiência próxima do que encontrariam num ambiente profissional real — algo que costuma faltar em treinamentos mais tradicionais da área. O contato com dados reais, ainda que anonimizados, foi apontado repetidamente como um diferencial importante.
+                    </p>
+                    <p>
+                      Entre os pontos de atenção, o desempenho das ferramentas em conexões mais lentas apareceu com certa frequência, assim como pequenas inconsistências de interface que tornavam alguns fluxos menos intuitivos do que o esperado. Nenhum dos problemas levantados comprometeu o uso das ferramentas, mas indicam caminhos claros de melhoria para as próximas versões.
+                    </p>
+                    <p>
+                      No geral, os resultados reforçam que a proposta central — oferecer um ambiente de treinamento baseado em incidentes reais — está sendo bem recebida pelos alunos e cumpre seu papel pedagógico dentro do programa.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Slide 1 — Bugs */}
+              <div className={`transition-all duration-500 ${avaliacaoSlide === 1 ? "block" : "hidden"}`}>
+                <div className="bg-white dark:bg-gray-800 rounded-3xl border border-purple-100 dark:border-purple-900/50 shadow-xl p-8">
+                  <div className="flex items-center gap-3 mb-7">
+                    <div className="bg-gradient-to-br from-red-500 to-pink-600 rounded-2xl p-3">
+                      <Bug className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white">Problemas Encontrados</h3>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">18 ocorrências registradas durante os testes</p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+                    <p>
+                      Durante o período de uso, os alunos reportaram 18 problemas distribuídos entre as duas ferramentas. Os relatos foram categorizados em dois grupos principais: <span className="font-semibold text-gray-900 dark:text-white">problemas de usabilidade</span> — como fluxos confusos, botões sem resposta visual e comportamentos inesperados de interface — e <span className="font-semibold text-gray-900 dark:text-white">problemas funcionais</span>, que envolvem falhas no processamento, como timeouts em entradas maiores, mascaramento incorreto de certos formatos de dado e inconsistências na exportação de resultados.
+                    </p>
+                    <p>
+                      A maior concentração de ocorrências está na Anon-LFI, o que era esperado dado o volume de uso e a variedade de entradas testadas pelos alunos. A maior parte dos problemas identificados já foi corrigida ou está em análise pela equipe de desenvolvimento.
+                    </p>
+                  </div>
+
+                  <div className="overflow-x-auto rounded-xl border border-gray-100 dark:border-gray-700">
+                    <table className="w-full text-sm">
+                      <thead>
+                        <tr className="bg-gray-50 dark:bg-gray-900/60">
+                          <th className="text-left px-4 py-3 font-semibold text-gray-700 dark:text-gray-300">Categoria</th>
+                          <th className="text-left px-4 py-3 font-semibold text-gray-700 dark:text-gray-300">Ferramenta</th>
+                          <th className="text-center px-4 py-3 font-semibold text-gray-700 dark:text-gray-300">Total</th>
+                          <th className="text-center px-4 py-3 font-semibold text-gray-700 dark:text-gray-300">Corrigidos</th>
+                          <th className="text-center px-4 py-3 font-semibold text-gray-700 dark:text-gray-300">Em análise</th>
+                          <th className="text-center px-4 py-3 font-semibold text-gray-700 dark:text-gray-300">Pendentes</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
+                        {[
+                          { cat: "Usabilidade", tool: "Anon-LFI", total: 4, fixed: 3, analysis: 0, pending: 1 },
+                          { cat: "Usabilidade", tool: "Class-LFI", total: 3, fixed: 2, analysis: 1, pending: 0 },
+                          { cat: "Funcional",   tool: "Anon-LFI", total: 5, fixed: 2, analysis: 2, pending: 1 },
+                          { cat: "Funcional",   tool: "Class-LFI", total: 6, fixed: 3, analysis: 1, pending: 2 },
+                        ].map(({ cat, tool, total, fixed, analysis, pending }, idx) => (
+                          <tr key={idx} className="hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors">
+                            <td className="px-4 py-3 text-gray-700 dark:text-gray-300 font-medium">{cat}</td>
+                            <td className="px-4 py-3">
+                              <span className={`px-2 py-0.5 rounded-md text-xs font-medium ${tool === "Anon-LFI" ? "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300" : "bg-violet-100 text-violet-700 dark:bg-violet-900/40 dark:text-violet-300"}`}>
+                                {tool}
+                              </span>
+                            </td>
+                            <td className="px-4 py-3 text-center font-semibold text-gray-800 dark:text-gray-200">{total}</td>
+                            <td className="px-4 py-3 text-center text-emerald-600 dark:text-emerald-400 font-medium">{fixed}</td>
+                            <td className="px-4 py-3 text-center text-blue-600 dark:text-blue-400 font-medium">{analysis}</td>
+                            <td className="px-4 py-3 text-center text-gray-500 dark:text-gray-400 font-medium">{pending}</td>
+                          </tr>
+                        ))}
+                        <tr className="bg-gray-50 dark:bg-gray-900/40 font-semibold">
+                          <td className="px-4 py-3 text-gray-900 dark:text-white" colSpan={2}>Total</td>
+                          <td className="px-4 py-3 text-center text-gray-900 dark:text-white">18</td>
+                          <td className="px-4 py-3 text-center text-emerald-600 dark:text-emerald-400">10</td>
+                          <td className="px-4 py-3 text-center text-blue-600 dark:text-blue-400">4</td>
+                          <td className="px-4 py-3 text-center text-gray-500 dark:text-gray-400">4</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              {/* Slide 2 — Relatos dos Alunos */}
+              <div className={`transition-all duration-500 ${avaliacaoSlide === 2 ? "block" : "hidden"}`}>
+                <div className="bg-white dark:bg-gray-800 rounded-3xl border border-purple-100 dark:border-purple-900/50 shadow-xl p-8">
+                  <div className="flex items-center gap-3 mb-8">
+                    <div className="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl p-3">
+                      <MessageSquare className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white">Relatos dos Alunos</h3>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">Feedbacks abertos coletados via formulário anônimo</p>
+                    </div>
+                  </div>
+
+                  <div className="grid sm:grid-cols-2 gap-5">
+                    {[
+                      {
+                        nome: "Aluno A.",
+                        turma: "HdB — Módulo 3",
+                        nota: 5,
+                        texto: "A plataforma de classificação de incidentes foi muito intuitiva. Consegui entender na prática como funciona o processo de triagem de tickets de segurança. Com certeza vou usar isso no meu trabalho.",
+                        tag: "Class-LFI",
+                      },
+                      {
+                        nome: "Aluno B.",
+                        turma: "HdB — Módulo 2",
+                        nota: 4,
+                        texto: "A ferramenta de anonimização é excelente! Fiquei impressionada com a precisão. O único ponto de melhoria seria a velocidade de processamento para arquivos grandes.",
+                        tag: "Anon-LFI",
+                      },
+                      {
+                        nome: "Aluno C.",
+                        turma: "HdB — Módulo 4",
+                        nota: 4,
+                        texto: "Muito bom ter um ambiente seguro para praticar com dados reais anonimizados. A integração entre as ferramentas ficou bem transparente para o usuário final.",
+                        tag: "Geral",
+                      },
+                      {
+                        nome: "Aluno D.",
+                        turma: "HdB — Módulo 1",
+                        nota: 5,
+                        texto: "Nunca tinha visto uma plataforma de treinamento em cibersegurança com esse nível de qualidade no Brasil. Os cenários são realistas e o feedback da IA ajuda bastante.",
+                        tag: "Class-LFI",
+                      },
+                      {
+                        nome: "Aluno E.",
+                        turma: "HdB — Módulo 3",
+                        nota: 3,
+                        texto: "Gostei do conceito, mas tive dificuldade com o desempenho em conexões mais lentas. A interface travou algumas vezes durante os exercícios. Espero que melhore nas próximas versões.",
+                        tag: "Anon-LFI",
+                      },
+                      {
+                        nome: "Aluno F.",
+                        turma: "HdB — Módulo 2",
+                        nota: 5,
+                        texto: "Incrível poder praticar classificação de incidentes reais de forma ética. A experiência me preparou muito melhor para o mercado do que exercícios hipotéticos.",
+                        tag: "Geral",
+                      },
+                    ].map(({ nome, turma, nota, texto, tag }) => (
+                      <div key={nome} className="p-5 bg-gray-50 dark:bg-gray-900/50 rounded-2xl border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow">
+                        <div className="flex items-start justify-between mb-3">
+                          <div>
+                            <p className="font-semibold text-gray-800 dark:text-gray-200 text-sm">{nome}</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">{turma}</p>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            {Array.from({ length: 5 }).map((_, i) => (
+                              <Star
+                                key={i}
+                                className={`h-3.5 w-3.5 ${i < nota ? "text-yellow-400 fill-yellow-400" : "text-gray-300 dark:text-gray-600"}`}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                        <p className="text-gray-600 dark:text-gray-300 text-sm leading-relaxed mb-3">"{texto}"</p>
+                        <span className={`px-2 py-0.5 rounded-md text-xs font-medium ${tag === "Anon-LFI" ? "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300" : tag === "Class-LFI" ? "bg-violet-100 text-violet-700 dark:bg-violet-900/40 dark:text-violet-300" : "bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300"}`}>
+                          {tag}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-6 p-4 bg-gray-50 dark:bg-gray-900/40 rounded-xl border border-gray-200 dark:border-gray-700">
+                    <p className="text-sm text-gray-600 dark:text-gray-300">
+                      Os relatos acima foram coletados via formulário anônimo ao final do semestre. Nomes foram omitidos e turmas identificadas apenas pelo módulo cursado.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Botões de navegação */}
+            <div className="flex justify-between mt-6">
+              <button
+                onClick={prevSlide}
+                className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:border-purple-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 shadow-sm hover:shadow-md text-sm font-medium"
+              >
+                <ChevronLeft className="h-4 w-4" />
+                Anterior
+              </button>
+              <span className="flex items-center text-sm text-gray-400 dark:text-gray-500 font-medium">
+                {avaliacaoSlide + 1} / {avaliacaoTotalSlides}
+              </span>
+              <button
+                onClick={nextSlide}
+                className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:border-purple-400 hover:text-purple-600 dark:hover:text-purple-400 transition-all duration-300 shadow-sm hover:shadow-md text-sm font-medium"
+              >
+                Próximo
+                <ChevronRight className="h-4 w-4" />
+              </button>
             </div>
           </div>
         </div>
