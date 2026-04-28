@@ -1071,9 +1071,14 @@ export default function GTLFIPage() {
                     </Link>
                   </div>
 
-                  <div className="p-4 bg-white dark:bg-gray-900 rounded-lg border border-blue-200 dark:border-blue-800">
-                    <div className="space-y-2">
-                      <h4 className="font-semibold text-gray-900 dark:text-white text-sm">
+                  <div className="p-4 bg-white dark:bg-gray-900 rounded-lg border border-blue-200 dark:border-blue-800 hover:shadow-md transition-shadow">
+                    <Link
+                      href="https://ieeexplore.ieee.org/abstract/document/11471372"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block space-y-2 group"
+                    >
+                      <h4 className="font-semibold text-gray-900 dark:text-white text-sm group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
                         Applying LLMs to the Classification of Cybersecurity Incident Tickets in a Few-Shot Scenario
                       </h4>
                       <div className="flex items-center space-x-2 text-xs text-gray-600 dark:text-gray-400">
@@ -1081,7 +1086,11 @@ export default function GTLFIPage() {
                         <span>•</span>
                         <span>Internacional</span>
                       </div>
-                    </div>
+                      <div className="flex items-center text-blue-600 dark:text-blue-400 text-xs">
+                        <ExternalLink className="h-3 w-3 mr-1" />
+                        Ver artigo
+                      </div>
+                    </Link>
                   </div>
                 </CardContent>
               </Card>
@@ -1371,6 +1380,44 @@ export default function GTLFIPage() {
                  </Card>
                </div>
 
+               <div className="animate-in fade-in slide-in-from-right duration-1000 delay-500 h-full">
+                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900/20 dark:to-slate-800/20 h-full flex flex-col">
+                   <CardContent className="p-6 flex flex-col h-full">
+                     <div className="relative w-20 h-20 mx-auto mb-4 overflow-hidden rounded-full shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110 border-4 border-slate-200 dark:border-slate-600">
+                       <img 
+                         src="/home/avatars/avatar-esteves.jpg" 
+                         alt="João Pedro Ramires Esteves"
+                         className="w-full h-full object-cover"
+                       />
+                     </div>
+                     <h4 className="font-semibold text-gray-900 dark:text-white mb-2 text-base">João Pedro Ramires Esteves</h4>
+                     <p className="text-slate-600 dark:text-slate-400 text-sm font-medium mb-2">Pesquisador</p>
+                     <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed flex-grow">
+                       Mestrando em Ciência da Computação e Bacharel em Ciência da Computação, ambos pela Universidade Federal de Uberlândia (UFU).
+                     </p>
+                   </CardContent>
+                 </Card>
+               </div>
+
+               <div className="animate-in fade-in slide-in-from-bottom duration-1000 delay-[450ms] h-full">
+                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-rose-50 to-rose-100 dark:from-rose-900/20 dark:to-rose-800/20 h-full flex flex-col">
+                   <CardContent className="p-6 flex flex-col h-full">
+                     <div className="relative w-20 h-20 mx-auto mb-4 overflow-hidden rounded-full shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110 border-4 border-rose-200 dark:border-rose-600">
+                       <img 
+                         src="/home/avatars/avatar-beatriz.png" 
+                         alt="Beatriz Rolando Machado"
+                         className="w-full h-full object-cover"
+                       />
+                     </div>
+                     <h4 className="font-semibold text-gray-900 dark:text-white mb-2 text-base">Beatriz Rolando Machado</h4>
+                     <p className="text-rose-600 dark:text-rose-400 text-sm font-medium mb-2">Pesquisador</p>
+                     <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed flex-grow">
+                       Estudante de Ciência da Computação na Universidade Federal do Pampa (UNIPAMPA).
+                     </p>
+                   </CardContent>
+                 </Card>
+               </div>
+
                <div className="animate-in fade-in slide-in-from-bottom duration-1000 delay-200 h-full">
                  <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-pink-50 to-pink-100 dark:from-pink-900/20 dark:to-pink-800/20 h-full flex flex-col">
                    <CardContent className="p-6 flex flex-col h-full">
@@ -1434,24 +1481,7 @@ export default function GTLFIPage() {
                  </Card>
                </div>
 
-               <div className="animate-in fade-in slide-in-from-right duration-1000 delay-500 h-full">
-                 <Card className="text-center group hover:shadow-xl transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900/20 dark:to-slate-800/20 h-full flex flex-col">
-                   <CardContent className="p-6 flex flex-col h-full">
-                     <div className="relative w-20 h-20 mx-auto mb-4 overflow-hidden rounded-full shadow-lg group-hover:shadow-xl transition-all duration-500 group-hover:scale-110 border-4 border-slate-200 dark:border-slate-600">
-                       <img 
-                         src="/home/avatars/avatar-esteves.jpg" 
-                         alt="João Pedro Ramires Esteves"
-                         className="w-full h-full object-cover"
-                       />
-                     </div>
-                     <h4 className="font-semibold text-gray-900 dark:text-white mb-2 text-base">João Pedro Ramires Esteves</h4>
-                     <p className="text-slate-600 dark:text-slate-400 text-sm font-medium mb-2">Pesquisador</p>
-                     <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed flex-grow">
-                       Graduando em Ciências da Computação pela Universidade Federal de Uberlândia.
-                     </p>
-                   </CardContent>
-                 </Card>
-               </div>
+
              </div>
            </div>
          </div>
@@ -1557,8 +1587,8 @@ export default function GTLFIPage() {
                <div className="space-y-3">
                  <div className="flex items-center space-x-2 text-sm text-gray-400 hover:text-blue-400 transition-colors duration-300">
                    <Mail className="h-4 w-4 flex-shrink-0" />
-                   <a href="mailto:gt.lfi.rnp@gmail.com" className="break-all">
-                     gt.lfi.rnp@gmail.com
+                   <a href="mailto:miani@ufu.br" className="break-all">
+                   miani@ufu.br
                    </a>
                  </div>
                  <div className="flex items-center space-x-2 text-sm text-gray-400">
