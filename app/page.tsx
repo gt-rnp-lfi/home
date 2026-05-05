@@ -1114,16 +1114,24 @@ export default function GTLFIPage() {
                     </div>
                     <div>
                       <h3 className="text-xl font-bold text-gray-900 dark:text-white">Problemas Encontrados</h3>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">18 ocorrências registradas durante os testes</p>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">13 issues nas ferramentas · backlog consolidado</p>
                     </div>
                   </div>
 
                   <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
                     <p>
-                      Durante o período de uso, os alunos reportaram 18 problemas distribuídos entre as duas ferramentas. Os relatos foram categorizados em dois grupos principais: <span className="font-semibold text-gray-900 dark:text-white">problemas de usabilidade</span> — como fluxos confusos, botões sem resposta visual e comportamentos inesperados de interface — e <span className="font-semibold text-gray-900 dark:text-white">problemas funcionais</span>, que envolvem falhas no processamento, como timeouts em entradas maiores, mascaramento incorreto de certos formatos de dado e inconsistências na exportação de resultados.
+                      Durante o período de avaliação, as avalições dos residentes deram luz à 13 issues nas duas ferramentas LFI,
+                      consolidadas e priorizadas no backlog técnico do projeto. Os relatos foram categorizados em dois
+                      grupos principais: <span className="font-semibold text-gray-900 dark:text-white">problemas de usabilidade</span> - como
+                      fluxos confusos, elementos sem resposta interativa e inconsistências de navegação - e{" "}
+                      <span className="font-semibold text-gray-900 dark:text-white">problemas funcionais</span>, que envolvem falhas
+                      no processamento de uploads, resiliência de sessão e validação de dados de entrada.
                     </p>
                     <p>
-                      A maior concentração de ocorrências está na Anon-LFI, o que era esperado dado o volume de uso e a variedade de entradas testadas pelos alunos. A maior parte dos problemas identificados já foi corrigida ou está em análise pela equipe de desenvolvimento.
+                      A maior concentração de ocorrências está na Plataforma de Ensino Gamificada, refletindo o estágio inicial de
+                      maturidade da experiência do usuário nesse módulo. Todos os itens foram catalogados e priorizados
+                      por impacto operacional - 5 estão em análise ativa (Onda 1) e 8 compõem a fila de próximas
+                      entregas.
                     </p>
                   </div>
 
@@ -1141,11 +1149,12 @@ export default function GTLFIPage() {
                       </thead>
                       <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
                         {[
-                          { cat: "Usabilidade", tool: "Anon-LFI", total: 4, fixed: 3, analysis: 0, pending: 1 },
-                          { cat: "Usabilidade", tool: "Class-LFI", total: 3, fixed: 2, analysis: 1, pending: 0 },
-                          { cat: "Funcional", tool: "Anon-LFI", total: 5, fixed: 2, analysis: 2, pending: 1 },
-                          { cat: "Funcional", tool: "Class-LFI", total: 6, fixed: 3, analysis: 1, pending: 2 },
-                        ].map(({ cat, tool, total, fixed, analysis, pending }, idx) => (
+                          { cat: "Usabilidade", tool: "Anon-LFI", total: 3, analysis: 1, pending: 2 },
+                          { cat: "Usabilidade", tool: "Class-LFI", total: 5, analysis: 2, pending: 3 },
+                          { cat: "Funcional", tool: "Anon-LFI", total: 2, analysis: 1, pending: 1 },
+                          { cat: "Funcional", tool: "Class-LFI", total: 3, analysis: 1, pending: 2 },
+
+                        ].map(({ cat, tool, total, analysis, pending }, idx) => (
                           <tr key={idx} className="hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors">
                             <td className="px-4 py-3 text-gray-700 dark:text-gray-300 font-medium">{cat}</td>
                             <td className="px-4 py-3">
@@ -1154,7 +1163,6 @@ export default function GTLFIPage() {
                               </span>
                             </td>
                             <td className="px-4 py-3 text-center font-semibold text-gray-800 dark:text-gray-200">{total}</td>
-                            <td className="px-4 py-3 text-center text-emerald-600 dark:text-emerald-400 font-medium">{fixed}</td>
                             <td className="px-4 py-3 text-center text-blue-600 dark:text-blue-400 font-medium">{analysis}</td>
                             <td className="px-4 py-3 text-center text-gray-500 dark:text-gray-400 font-medium">{pending}</td>
                           </tr>
@@ -1162,13 +1170,18 @@ export default function GTLFIPage() {
                         <tr className="bg-gray-50 dark:bg-gray-900/40 font-semibold">
                           <td className="px-4 py-3 text-gray-900 dark:text-white" colSpan={2}>Total</td>
                           <td className="px-4 py-3 text-center text-gray-900 dark:text-white">18</td>
-                          <td className="px-4 py-3 text-center text-emerald-600 dark:text-emerald-400">10</td>
-                          <td className="px-4 py-3 text-center text-blue-600 dark:text-blue-400">4</td>
-                          <td className="px-4 py-3 text-center text-gray-500 dark:text-gray-400">4</td>
+                          <td className="px-4 py-3 text-center text-emerald-600 dark:text-emerald-400">5</td>
+                          <td className="px-4 py-3 text-center text-blue-600 dark:text-blue-400">8</td>
                         </tr>
                       </tbody>
                     </table>
                   </div>
+
+                  <p className="mt-4 text-xs text-gray-500 dark:text-gray-400">
+                    * Além das 13 issues nas ferramentas LFI, o backlog consolidado registra 15 issues no módulo Hackers do Bem e 3 itens transversais do ecossistema GT-LFI, totalizando 31 pontos de melhora priorizados.
+                  </p>
+
+
                 </div>
               </div>
 
