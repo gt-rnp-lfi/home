@@ -1194,53 +1194,27 @@ export default function GTLFIPage() {
                     </div>
                     <div>
                       <h3 className="text-xl font-bold text-gray-900 dark:text-white">Relatos dos Alunos</h3>
-                      <p className="text-sm text-gray-500 dark:text-gray-400">Feedbacks abertos coletados via formulário anônimo</p>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">Feedbacks Abertos (Coletados via Formulário Anônimo e E-mail) · Jan/2026</p>
                     </div>
                   </div>
 
                   <div className="grid sm:grid-cols-2 gap-5">
                     {[
                       {
-                        nome: "Aluno A.",
-                        turma: "HdB — Módulo 3",
+                        nome: "Residente A.",
+                        turma: "HdB — Residência 2025",
                         nota: 5,
-                        texto: "A plataforma de classificação de incidentes foi muito intuitiva. Consegui entender na prática como funciona o processo de triagem de tickets de segurança. Com certeza vou usar isso no meu trabalho.",
-                        tag: "Class-LFI",
+                        texto: "O AutoClass é uma plataforma impressionante, madura e de alto valor agregado. A geração de playbooks em formato Markdown e Ansible é um diferencial de altíssimo valor, oferecendo soluções estruturadas e prontas para implementação.",
+                        tag: "AutoClass",
+
                       },
                       {
-                        nome: "Aluno B.",
-                        turma: "HdB — Módulo 2",
+                        nome: "Residente B.",
+                        turma: "HdB — Residência 2025",
                         nota: 4,
-                        texto: "A ferramenta de anonimização é excelente! Fiquei impressionada com a precisão. O único ponto de melhoria seria a velocidade de processamento para arquivos grandes.",
-                        tag: "Anon-LFI",
-                      },
-                      {
-                        nome: "Aluno C.",
-                        turma: "HdB — Módulo 4",
-                        nota: 4,
-                        texto: "Muito bom ter um ambiente seguro para praticar com dados reais anonimizados. A integração entre as ferramentas ficou bem transparente para o usuário final.",
-                        tag: "Geral",
-                      },
-                      {
-                        nome: "Aluno D.",
-                        turma: "HdB — Módulo 1",
-                        nota: 5,
-                        texto: "Nunca tinha visto uma plataforma de treinamento em cibersegurança com esse nível de qualidade no Brasil. Os cenários são realistas e o feedback da IA ajuda bastante.",
-                        tag: "Class-LFI",
-                      },
-                      {
-                        nome: "Aluno E.",
-                        turma: "HdB — Módulo 3",
-                        nota: 3,
-                        texto: "Gostei do conceito, mas tive dificuldade com o desempenho em conexões mais lentas. A interface travou algumas vezes durante os exercícios. Espero que melhore nas próximas versões.",
-                        tag: "Anon-LFI",
-                      },
-                      {
-                        nome: "Aluno F.",
-                        turma: "HdB — Módulo 2",
-                        nota: 5,
-                        texto: "Incrível poder praticar classificação de incidentes reais de forma ética. A experiência me preparou muito melhor para o mercado do que exercícios hipotéticos.",
-                        tag: "Geral",
+                        texto: "O sistema de gamificação está bem interessante e motivando o usuário a utilizar a plataforma. Não tive problemas com a loja, tudo funcionou exatamente como o esperado.",
+                        tag: "Hackers do Bem",
+
                       },
                     ].map(({ nome, turma, nota, texto, tag }) => (
                       <div key={nome} className="p-5 bg-gray-50 dark:bg-gray-900/50 rounded-2xl border border-gray-100 dark:border-gray-700 hover:shadow-md transition-shadow">
@@ -1268,7 +1242,9 @@ export default function GTLFIPage() {
 
                   <div className="mt-6 p-4 bg-gray-50 dark:bg-gray-900/40 rounded-xl border border-gray-200 dark:border-gray-700">
                     <p className="text-sm text-gray-600 dark:text-gray-300">
-                      Os relatos acima foram coletados via formulário anônimo ao final do semestre. Nomes foram omitidos e turmas identificadas apenas pelo módulo cursado.
+                      Os relatos acima refletem os temas recorrentes identificados na análise qualitativa dos formulários e e-mails recebidos.
+                      Uma análise de sentimentos indicou polaridade positiva em todas as categorias avaliadas. Os nomes foram omitidos e os
+                      participantes identificados apenas como residentes do programa.
                     </p>
                   </div>
                 </div>
@@ -1697,6 +1673,16 @@ export default function GTLFIPage() {
                     <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed flex-grow">
                       Mestrando em Ciência da Computação e Bacharel em Ciência da Computação, ambos pela Universidade Federal de Uberlândia (UFU).
                     </p>
+                    <div className="flex justify-center space-x-3 text-xs mt-auto">
+                      <Link href="https://www.linkedin.com/in/jpramires/" target="_blank"
+                        className="text-teal-600 dark:text-teal-400 hover:text-teal-800 font-medium">
+                        LinkedIn
+                      </Link>
+                      <Link href="http://lattes.cnpq.br/4899321872055733" target="_blank"
+                        className="text-green-600 dark:text-green-400 hover:text-green-800 font-medium">
+                        Lattes
+                      </Link>
+                    </div>
                   </CardContent>
                 </Card>
               </div>
